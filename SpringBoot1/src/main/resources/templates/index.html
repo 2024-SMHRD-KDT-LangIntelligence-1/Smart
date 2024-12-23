@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<!-- jsp로 수업을 진행, html코드 안에 java코드 사용 가능 -->
+<!-- HTML을 확장하여 쓸 수 있는 라이브러리인 thymeleaf 라이브러리 사용 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- html태그에 xmlns:th="http://www.thymeleaf.org" 코드 추가
+	 th라는 이름으로 thymeleaf에 있는 기능 사용 -->
+<head>
+<title>Forty by HTML5 UP</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
+</head>
+<body class="is-preload">
+	<!-- 공통 헤더를 삽입 -->
+	<!-- th:replace == 현재 태그를 교체
+		 ~{} == {}안에 경로 작성 
+		 /header : 적용하고싶은 html의 경로작성 후 파일명 작성
+		 :: body : 교체할 태그 header.html의 어느부분을 추가할 것인지 -->
+	<div th:replace="~{header :: body}"></div>
+	
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Banner -->
+		<section id="banner" class="major">
+			<div class="inner">
+				<header class="major">
+				<!-- th:if="조건식" -->
+				<!-- th:unless="조건식" !(결과값) -->
+				<!-- el식 사용은 가능하나 session.member 작성 -->
+				<div th:if="${session.member} != null">
+					<!-- th태그를 활용하여 해당 태그의 내용 수정 -->
+					<h1 th:text="${session.member.email}+'님 환영합니다.'"></h1>
+				</div>
+				<div th:unless="${session.member} != null">
+					<h1>로그인 한 세션아이디를 확인해주세요</h1>				
+				</div>
+				</header>
+				<div class="content">
+					<p>
+						A responsive site template designed by HTML5 UP<br /> and
+						released under the Creative Commons.
+					</p>
+					<ul class="actions">
+						<li><a href="#" class="button next scrolly">Get
+								Started</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<div class="inner">
+				<section>
+					<form method="post" action="">
+						<div class="fields">
+							<div class="field half">
+								<label for="name">Name</label> 
+								<input type="text"	name="sendName" id="name" />
+							</div>
+							<div class="field half">
+								<label for="email">Email</label> 
+								<input type="text"	name="receiveEmail" id="email" />
+							</div>
+							<div class="field">
+								<label for="message">Message</label>
+								<textarea name="message" id="message" rows="6"></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message"
+								class="primary" /></li>
+							<li><input type="reset" value="Clear" /></li>
+						</ul>
+					</form>
+				</section>
+				<section class="split">
+					<section>
+						<div class="contact-method">
+							<span class="icon solid alt fa-envelope"></span>
+							<h3>Email</h3>
+							<span>로그인 한 이메일를 확인해주세요</span>
+							
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon solid alt fa-phone"></span>
+							<h3>Phone</h3>
+							<h3>로그인 한 전화번호를 확인해주세요</h3>
+							
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon solid alt fa-home"></span>
+							<h3>Address</h3>
+							<h3>로그인 한 주소를 확인해주세요</h3>
+							
+						</div>
+					</section>
+				</section>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-twitter"><span
+							class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span
+							class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span
+							class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands alt fa-github"><span
+							class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span
+							class="label">LinkedIn</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled</li>
+					<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<!-- css / js 사용을 위해 static 폴더 안에서 관리. static 폴더명을 제외하고 폴더명 작성으로 접근 -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- Header -->
+	<!--3. logo 클릭시 main으로 돌아가기-->
+	<header id="header" class="alt">
+		<a href="#" class="logo"><strong>Forty</strong> <span>by
+				HTML5 UP</span></a>
+		<nav>
+			<div th:if="${session.member} != null">
+				<a href="/logout">로그아웃</a>
+			</div>
+			<div th:unless="${session.member} != null">
+				<a href="#menu">로그인</a>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Menu -->
+	<nav id="menu">
+		<ul class="links">
+			<li><h5>로그인</h5></li>
+			<!--2. form 태그 로그인 버튼 클릭 시 설정하기-->
+			<form action="member/login.do" method="post">
+				<li><input type="text" name="email" placeholder="Email을 입력하세요"></li>
+				<li><input type="password" name="pw" placeholder="PW를 입력하세요"></li>
+				<li><input type="submit" value="LogIn" class="button fit"></li>
+			</form>
+		</ul>
+		<ul class="links">
+			<li><h5>회원가입</h5></li>
+			<!--1. form 태그 회원가입 버튼 클릭 시 설정하기-->
+			<form action="member/join.do" method="post">
+				<li><input type="text" name="email" placeholder="Email을 입력하세요"></li>
+				<li><input type="password" name="pw" placeholder="PW를 입력하세요"></li>
+				<li><input type="text" name="tel" placeholder="전화번호를 입력하세요"></li>
+				<li><input type="text" name="address" placeholder="집주소를 입력하세요"></li>
+				<li><input type="submit" value="JoinUs" class="button fit"></li>
+			</form>
+		</ul>
+
+		<!-- 4. 로그인이 될 시 회원 정보 띄우기/ 로그아웃, 비로그인 시 로그인/회원가입 띄우기-->
+	</nav>
+
+</body>
+</html>

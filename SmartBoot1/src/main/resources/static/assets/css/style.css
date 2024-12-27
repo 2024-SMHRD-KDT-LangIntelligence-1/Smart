@@ -12,10 +12,6 @@ a {
 /* 페이지 전체 스타일 설정 */
 body {
 	font-family: pretendard;
-	background: #f7f7f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 100vh;
 	color: #333;
 	position: relative;
@@ -100,10 +96,9 @@ to {
 	display: flex;
 	cursor: default;
 	font-weight: 600;
-	height: 3.25em;
+	height: 4em;
 	left: 0;
-	letter-spacing: 0.25em;
-	line-height: 3.25em;
+	line-height: 4em;
 	margin: 0;
 	top: 0;
 	width: 100%;
@@ -164,15 +159,14 @@ to {
 #header nav a {
 	border: 0;
 	display: block;
-	font-size: 0.8em;
+	font-size: 14px;
 	height: inherit;
 	line-height: inherit;
-	padding: 0 0.75em;
 	position: relative;
 }
 
 #header nav a:last-child {
-	padding-right: 1.5em;
+	padding-right: 1.2em;
 	color: white;
 }
 
@@ -394,3 +388,64 @@ to {
     display: none;
 }
 
+/* 마이페이지 ----------------------------- */
+.wrapping {
+	padding-top: 4em;
+}
+.mypage-menu h2,
+.mypage-content h2 {
+	font-size: 24px;
+    margin: 30px 0 30px 20px;
+    font-weight: 600;
+    color: #2E8B57;
+}
+.mypage-menu {
+	height: 100vh;
+	width: 250px;
+	position: fixed;
+	background-color: #f7f7f7;
+	color: #2E8B57;
+}
+.mypage-menu a {
+	padding: 20px;
+	text-decoration: none;
+	font-size: 18px;
+	color: #333;
+	display: block;
+	border-bottom: 1px solid #e0e0e0;
+}
+.mypage-menu a:hover {
+	background-color: #f7f7f7;
+	color: #2E8B57;
+}
+.mypage-content {
+	margin-left: 250px;
+}
+.mypage-content .content-section {
+	display: none;
+}
+.mypage-content .content-section.active {
+	display: block;
+}
+.mypage-content .info-table {
+	width: 50%;
+	border-collapse: collapse;
+	margin-inline-start: 50px;
+	margin-inline-end: 100px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.mypage-content .info-table tr {
+	border-bottom: 1px solid #e0e0e0;
+}
+.mypage-content .info-table tr:last-child {
+	border-bottom: none;
+}
+.mypage-content .info-table td {
+	padding: 30px;
+	text-align: left;
+	font-size: 18px;
+	background-color: #f8f7f7;
+}

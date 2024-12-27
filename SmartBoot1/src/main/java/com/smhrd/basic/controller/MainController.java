@@ -21,29 +21,32 @@ public class MainController {
 	public String home() {
 		return "main";
 	}
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
 	
-	// 회원가입기능
+	
+	// 회원가입
 	@PostMapping("member/join.do")
 	public String join(MemberVO vo) {
 		MemberEntity en = new MemberEntity(vo);
 		repo.save(en);
-		
 		return "redirect:/";
 	}
 	
-	// 로그인 기능
+	// 로그인
 	@PostMapping("member/login.do")
 	public String login( String id, String pw, HttpSession session) {
 		MemberEntity enti = repo.findByIdAndPw(id, pw);
 		session.setAttribute("member", enti);
-		
 		return "redirect:/";
 	}
 	
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("member");
-		
 		return "redirect:/";
 	}
 

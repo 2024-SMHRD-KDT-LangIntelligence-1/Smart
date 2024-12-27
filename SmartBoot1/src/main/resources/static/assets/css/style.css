@@ -95,14 +95,9 @@ to {
 
 }
 
-/* --------------------------------------------- */
+/* 헤더 --------------------------------------------- */
 #header {
-	display: -moz-flex;
-	display: -webkit-flex;
-	display: -ms-flex;
 	display: flex;
-	background-color: #2a2f4a;
-	box-shadow: 0 0 0.25em 0 rgba(0, 0, 0, 0.15);
 	cursor: default;
 	font-weight: 600;
 	height: 3.25em;
@@ -110,7 +105,6 @@ to {
 	letter-spacing: 0.25em;
 	line-height: 3.25em;
 	margin: 0;
-	position: fixed;
 	top: 0;
 	width: 100%;
 	z-index: 10000;
@@ -119,10 +113,11 @@ to {
 #header .logo {
 	border: 0;
 	display: inline-block;
-	font-size: 0.8em;
+	font-size: 24px;
 	height: inherit;
 	line-height: inherit;
-	padding: 0 1.5em;
+	padding: 0 15px;
+	color: white;
 }
 
 #header .logo strong {
@@ -174,11 +169,11 @@ to {
 	line-height: inherit;
 	padding: 0 0.75em;
 	position: relative;
-	vertical-align: middle;
 }
 
 #header nav a:last-child {
 	padding-right: 1.5em;
+	color: white;
 }
 
 #header nav a[href="#menu"] {
@@ -234,21 +229,14 @@ to {
 }
 
 #header.alt {
-	-moz-transition: opacity 2.5s ease;
-	-webkit-transition: opacity 2.5s ease;
-	-ms-transition: opacity 2.5s ease;
 	transition: opacity 2.5s ease;
-	-moz-transition-delay: 0.75s;
-	-webkit-transition-delay: 0.75s;
-	-ms-transition-delay: 0.75s;
 	transition-delay: 0.75s;
 	-moz-animation: none;
-	-webkit-animation: none;
 	-ms-animation: none;
 	animation: none;
-	background-color: transparent;
 	box-shadow: none;
 	position: absolute;
+	background-color: #2E8B57;
 }
 
 /*----------------------------------------*/
@@ -405,3 +393,4 @@ to {
     background: rgba(0, 0, 0, 0.5);
     display: none;
 }
+

@@ -3124,10 +3124,11 @@ input, select, textarea {
 		line-height: 3.25em;
 		margin: 0;
 		position: fixed;
-		text-transform: uppercase;
+		/*text-transform: uppercase;*/
 		top: 0;
 		width: 100%;
 		z-index: 10000;
+		
 	}
 
 		#header .logo {

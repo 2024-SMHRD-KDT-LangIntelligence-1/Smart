@@ -13,24 +13,19 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
-	// 기존에 RequestMapping 이라고 작성 했으나
-	// boot 에선 get/post/put/delete/patch 를 나누어서 mapping 코드 작성 권장
-	// --> legacy 에서도 사용 가능
 	
 	@Autowired
 	MemberRepo repo;
 	
 	@GetMapping("/")
 	public String home() {
-		return "index";
+		return "main";
 	}
 	
 	// 회원가입기능
 	@PostMapping("member/join.do")
 	public String join(MemberVO vo) {
-		
 		MemberEntity en = new MemberEntity(vo);
-		
 		repo.save(en);
 		
 		return "redirect:/";
@@ -38,15 +33,8 @@ public class MainController {
 	
 	// 로그인 기능
 	@PostMapping("member/login.do")
-	public String login( String email, String pw, HttpSession session) {
-		
-		// System.out.println("email : " + email);
-		
-		MemberEntity enti = repo.findByEmailAndPw(email, pw);
-		
-		// System.out.println("email : " + enti.getEmail());
-		// System.out.println("password : " + enti.getPw());
-		
+	public String login( String id, String pw, HttpSession session) {
+		MemberEntity enti = repo.findByIdAndPw(id, pw);
 		session.setAttribute("member", enti);
 		
 		return "redirect:/";
@@ -54,7 +42,6 @@ public class MainController {
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		
 		session.removeAttribute("member");
 		
 		return "redirect:/";

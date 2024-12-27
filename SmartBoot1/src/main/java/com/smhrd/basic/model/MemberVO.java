@@ -9,9 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberVO {
 	
-	private String email;
+	private String id;
 	private String pw;
-	private String tel;
-	private String address;
-
+	private String birthdate;
+	private String gender;
+	private String genre;
+	private String job;
+	private String preference;
+	private String mood;
+	private String join_dt;
+	
 }

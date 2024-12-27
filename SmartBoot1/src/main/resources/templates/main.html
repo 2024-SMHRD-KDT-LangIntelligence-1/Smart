@@ -3,35 +3,32 @@
 <head>
 <title>Forty by HTML5 UP</title>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="assets/css/style.css" />
-
-
 </head>
 
 <body>
-	<div th:replace="~{/join :: body}"></div>
-	<div th:replace="~{/best :: body}"></div>
-	<div class=bg-container></div>
-	<header class="major">
-		<div th:if="${session.member} != null">
-			<h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1>
-		</div>
-		<div th:unless="${session.member} != null">
-			<h1>로그인 한 세션아이디를 확인해주세요</h1>
-		</div>
-	</header>
+   <div th:replace="~{/header :: body}"></div>
+   <div th:replace="~{/join :: body}"></div>
+   
+<!--    <header class="major"> -->
+<!--       <div th:if="${session.member} != null"> -->
+<!--          <h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1> -->
+<!--       </div> -->
+<!--       <div th:unless="${session.member} != null"> -->
+<!--          <h1>로그인 한 세션아이디를 확인해주세요</h1> -->
+<!--       </div> -->
+<!--    </header> -->
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/smart.js"></script>
+   <!-- Scripts -->
+   <script src="assets/js/jquery.min.js"></script>
+   <script src="assets/js/jquery.scrolly.min.js"></script>
+   <script src="assets/js/jquery.scrollex.min.js"></script>
+   <script src="assets/js/browser.min.js"></script>
+   <script src="assets/js/breakpoints.min.js"></script>
+   <script src="assets/js/util.js"></script>
+   <script src="assets/js/main.js"></script>
+   <script src="assets/js/smart.js"></script>
 </body>
 </html>

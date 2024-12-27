@@ -6,20 +6,7 @@
 <title>로그인</title>
 </head>
 <body>
-	<header id="header" class="alt">
-		<a href="/" class="logo">Smart Library</a>
-		<nav>
-			<div th:if="${session.member} != null" class="logout">
-				<a href="/logout">로그아웃</a>
-			</div>
-			<div th:unless="${session.member} != null" class="join">
-				<a href="#join">회원가입</a>
-			</div>
-			<div th:unless="${session.member} != null" class="login">
-				<a href="#login">로그인</a>
-			</div>
-		</nav>
-	</header>
+	
 
 	<!-- 회원가입 -->
 	<div class="form-join">
@@ -155,7 +142,7 @@
 			</div>
 		</form>
 	</div>
-
+	<div class=bg-container></div>
 
 </body>
 </html>

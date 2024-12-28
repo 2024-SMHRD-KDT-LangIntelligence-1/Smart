@@ -3,8 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-	<p>Hello World</p>
+	<div class="best-seller wrapping swiper mySwiper">
+		<h2>이달의 베스트셀러</h2>
+		<div class="carousel swiper-wrapper">
+			<div class="book-item swiper-slide" th:each="book : ${books}">
+				<img th:src="${book.bookImg}">
+				<div th:text="${book.title}" class="title"></div>
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+	    <div class="swiper-pagination"></div>
+	</div>
+	
+	<!-- Swiper JS -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+			slidesPerView : 10,
+			spaceBetween : 30,
+			loop : true,
+			pagination : {
+				el : ".swiper-pagination",
+				clickable : true,
+			},
+			navigation : {
+				nextEl : ".swiper-button-next",
+				prevEl : ".swiper-button-prev",
+			},
+		});
+	</script>
 </body>
 </html>

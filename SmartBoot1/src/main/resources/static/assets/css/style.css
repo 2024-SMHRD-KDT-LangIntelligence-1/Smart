@@ -8,6 +8,12 @@
 a {
 	text-decoration: none;
 }
+h2 {
+	font-size: 24px;
+    margin: 30px 0 30px 20px;
+    font-weight: 600;
+    color: #2E8B57;
+}
 
 /* 페이지 전체 스타일 설정 */
 body {
@@ -111,7 +117,7 @@ to {
 	font-size: 24px;
 	height: inherit;
 	line-height: inherit;
-	padding: 0 15px;
+	padding-left:240px;
 	color: white;
 }
 
@@ -154,6 +160,7 @@ to {
 	flex-grow: 1;
 	height: inherit;
 	line-height: inherit;
+	padding-right: 240px;
 }
 
 #header nav a {
@@ -251,6 +258,14 @@ to {
 	color: #3d763d;
 }
 
+.form-wrapping {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .form-group {
 	margin-bottom: 20px;
 }
@@ -392,13 +407,6 @@ to {
 .wrapping {
 	padding-top: 4em;
 }
-.mypage-menu h2,
-.mypage-content h2 {
-	font-size: 24px;
-    margin: 30px 0 30px 20px;
-    font-weight: 600;
-    color: #2E8B57;
-}
 .mypage-menu {
 	height: 100vh;
 	width: 250px;
@@ -448,4 +456,36 @@ to {
 	text-align: left;
 	font-size: 18px;
 	background-color: #f8f7f7;
+}
+
+/* 베스트셀러 ----------------------------------------- */
+.best-seller {
+	width: 1440px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.best-seller .carousel {
+	display: flex;
+	flex-direction: row;
+	height: 170px;
+}
+.best-seller .book-item {
+	width: 100px;
+}
+.best-seller .book-item {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.best-seller .book-item img {
+	margin-bottom: 10px;
+	width: 90px;
+	height: 120px;
+}
+.best-seller .book-item .title {
+	font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }

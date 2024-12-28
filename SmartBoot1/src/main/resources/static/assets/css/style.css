@@ -11,7 +11,7 @@ a {
 h2 {
 	font-size: 24px;
     margin: 30px 0 30px 20px;
-    font-weight: 600;
+    font-weight: 700;
     color: #2E8B57;
 }
 
@@ -114,10 +114,10 @@ to {
 #header .logo {
 	border: 0;
 	display: inline-block;
-	font-size: 24px;
+	font-size: 32px;
 	height: inherit;
 	line-height: inherit;
-	padding-left:240px;
+	padding-left:250px;
 	color: white;
 }
 
@@ -160,13 +160,13 @@ to {
 	flex-grow: 1;
 	height: inherit;
 	line-height: inherit;
-	padding-right: 240px;
+	padding-right: 250px;
 }
 
 #header nav a {
 	border: 0;
 	display: block;
-	font-size: 14px;
+	font-size: 18px;
 	height: inherit;
 	line-height: inherit;
 	position: relative;
@@ -401,6 +401,7 @@ to {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: none;
+    z-index: 50;
 }
 
 /* 마이페이지 ----------------------------- */
@@ -464,28 +465,36 @@ to {
 	margin: 0 auto;
 	overflow: hidden;
 }
-.best-seller .carousel {
+.best-seller .book-list {
 	display: flex;
 	flex-direction: row;
-	height: 170px;
 }
 .best-seller .book-item {
-	width: 100px;
-}
-.best-seller .book-item {
-	display: flex;
-    flex-direction: column;
-    align-items: center;
+	
 }
 .best-seller .book-item img {
-	margin-bottom: 10px;
-	width: 90px;
-	height: 120px;
+    width: 150px;
+    height: 200px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px #cdcdcd;
 }
 .best-seller .book-item .title {
-	font-size: 14px;
+	font-size: 16px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    text-align: center;
+    line-height: 1.3;
+}
+.best-seller .book-list {
+	
+}
+.best-seller .button-height {
+	top: 220px;
+	margin: 0 230px;
+	color: #2E8B57;
+}
+.best-seller .swiper {
+	width: 1340px;
 }

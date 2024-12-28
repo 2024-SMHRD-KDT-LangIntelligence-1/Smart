@@ -8,6 +8,7 @@
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/style2.css" />
 
 </head>
 
@@ -15,6 +16,7 @@
 	<div th:replace="~{/header :: body}"></div>
 	<div th:replace="~{/join :: body}"></div>
 	<div th:replace="~{/best :: body}"></div>
+	<div th:replace="~{/library_info :: body}"></div>
 
 	<header class="major">
 		<div th:if="${session.member} != null">

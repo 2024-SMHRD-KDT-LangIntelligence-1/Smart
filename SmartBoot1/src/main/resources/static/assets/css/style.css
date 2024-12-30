@@ -10,7 +10,7 @@ a {
 }
 h2 {
 	font-size: 24px;
-    margin: 30px 0 30px 20px;
+    margin: 30px 0 30px;
     font-weight: 700;
     color: #2E8B57;
 }
@@ -80,10 +80,7 @@ body {
 	text-decoration: none;
 	color: #3f763d;
 	font-weight: bold;
-}
-
-.form-footer a:hover {
-	color: #3f763d;
+	cursor: pointer;
 }
 
 @keyframes fadeIn {from { opacity:0;
@@ -117,7 +114,7 @@ to {
 	font-size: 32px;
 	height: inherit;
 	line-height: inherit;
-	padding-left:250px;
+	padding-left:230px;
 	color: white;
 }
 
@@ -170,6 +167,7 @@ to {
 	height: inherit;
 	line-height: inherit;
 	position: relative;
+	cursor: pointer;
 }
 
 #header nav a:last-child {
@@ -236,7 +234,7 @@ to {
 	-ms-animation: none;
 	animation: none;
 	box-shadow: none;
-	position: absolute;
+	position: fixed;
 	background-color: #2E8B57;
 }
 
@@ -342,16 +340,6 @@ to {
 	font-size: 14px;
 }
 
-.form-footer a {
-	text-decoration: none;
-	color: #3f763d;
-	font-weight: bold;
-}
-
-.form-footer a:hover {
-	color: #3f763d;
-}
-
 .hidden {
 	display: none;
 }
@@ -407,6 +395,8 @@ to {
 /* 마이페이지 ----------------------------- */
 .wrapping {
 	padding-top: 4em;
+	width: 1440px;
+	margin: 0 auto;
 }
 .mypage-menu {
 	height: 100vh;
@@ -461,8 +451,6 @@ to {
 
 /* 베스트셀러 ----------------------------------------- */
 .best-seller {
-	width: 1440px;
-	margin: 0 auto;
 	overflow: hidden;
 }
 .best-seller .book-list {
@@ -497,4 +485,73 @@ to {
 }
 .best-seller .swiper {
 	width: 1340px;
+}
+
+/* 스마트도서관 정보 */
+.map-svg path {
+	fill: whitesmoke;
+	cursor: pointer;
+	transition: fill 0.3s ease;
+}
+
+.map-svg path:hover {
+	fill: #81C784;
+}
+
+.gu-table {
+	width: 100%;
+	margin: 20px auto;
+	max-width: 1000px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.gu-page {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.gu-page th {
+	background: linear-gradient(to right, #66bb6a, #4CAF50);
+	color: white;
+	padding: 15px;
+	font-size: 20px;
+	font-weight: 600;
+	text-transform: uppercase;
+	border-bottom: 2px solid #388e3c;
+}
+
+.gu-page td {
+	background-color: #e8f5e9;
+	padding: 12px;
+	font-size: 16px;
+	color: #1b5e20;
+	border-bottom: 1px solid #c8e6c9;
+	transition: background-color 0.3s ease;
+}
+
+.gu-page td:hover {
+	background-color: #c8e6c9;
+}
+
+.gu-page a {
+	color: #1b5e20;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s ease, text-decoration 0.3s ease;
+	font-size: 16px;
+}
+
+.gu-page a:hover {
+	color: #2c6e2f;
+	text-decoration: underline;
+}
+
+.gu-page a:hover {
+	cursor: pointer;
+}
+.map-tooltip {
+	height: 20px;
 }

@@ -55,7 +55,30 @@ function showSection(sectionId) {
 	document.getElementById(sectionId).classList.add('active');
 }
 
-const prevButton = document.querySelector('.carousel .prev');
-const nextButton = document.querySelector('.carousel .next');
-const images = document.querySelectorAll('.carousel img');
-let currentIndex = 0;
+/* 스마트도서관 정보 */
+document.addEventListener('DOMContentLoaded', function() {
+	const paths = document.querySelectorAll('.map-svg path');
+	const tooltip = document.querySelector('.map-tooltip');
+
+	const guNames = {
+		'donggu': '동구',
+		'seogu': '서구',
+		'namgu': '남구',
+		'bukgu': '북구',
+		'gwangsangu': '광산구'
+	};
+
+	paths.forEach(path => {
+		path.addEventListener('mousemove', (e) => {
+			const guId = path.parentElement.id;
+			tooltip.textContent = `${guNames[guId]}`;
+			tooltip.style.visibility = 'visible';
+			tooltip.style.left = e.pageX + 10 + 'px';
+			tooltip.style.top = e.pageY + 10 + 'px';
+		});
+
+		path.addEventListener('mouseleave', () => {
+			tooltip.style.visibility = 'hidden';
+		});
+	});
+});

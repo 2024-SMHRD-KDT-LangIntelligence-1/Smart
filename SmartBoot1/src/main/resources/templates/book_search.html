@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<h2>스마트도서관 소장도서 검색</h2>
+	<!-- 검색 폼 -->
+	<div class="form-container">
+		<div class="form-group">
+			<label for="gu">구 선택 </label> <select id="gu" name="gu" required="">
+				<option value="">선택하세요</option>
+				<option value="광주전체">광주전체</option>
+				<option value="동구">동구</option>
+				<option value="서구">서구</option>
+				<option value="남구">남구</option>
+				<option value="북구">북구</option>
+				<option value="광산구">광산구</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="ho">지점 선택 </label> <select id="ho" name="ho" required=""
+				disabled="">
+				<option value="">구를 먼저 선택하세요</option>
+				<option value="동구1호점">동구1호점(문화센터)</option>
+				<option value="동구2호점">동구2호점(국민체육센터)</option>
+				<option value="동구3호점">동구3호점(용산모아엘가)</option>
+				<option value="서구1호점">서구1호점(상무역4번출구)</option>
+				<option value="서구2호점">서구2호점(서구청민원실)</option>
+				<option value="서구3호점">서구3호점(운천역지하1층)</option>
+				<option value="서구4호점">서구4호점(풍암행복복지센터)</option>
+				<option value="서구5호점">서구5호점(나라키움광주통합청사)</option>
+				<option value="서구6호점">서구6호점(청소년꿈누리센터)</option>
+				<option value="남구1호점">남구1호점(진월다사랑치킨)</option>
+				<option value="남구2호점">남구2호점(주월2행정복지센터)</option>
+				<option value="남구3호점">남구3호점(백운광장스트리트푸드존)</option>
+				<option value="남구4호점">남구4호점(다목적체육관)</option>
+				<option value="남구5호점">남구5호점(효천공원)</option>
+				<option value="북구1호점">북구1호점(광주역광장)</option>
+				<option value="북구2호점">북구2호점(한국산업단지공단)</option>
+				<option value="북구3호점">북구3호점(북구청우측별관)</option>
+				<option value="광산구1호점">광산구1호점(광산구청송정보건지소)</option>
+				<option value="광산구2호점">광산구2호점(송정공원역)</option>
+				<option value="광산구3호점">광산구3호점(수완행정복지센터)</option>
+				<option value="광산구4호점">광산구4호점(신창행정복지센터)</option>
+				<option value="광산구5호점">광산구5호점(쌍암공원관리사무소)</option>
+				<option value="광산구6호점">광산구6호점(월곡1행정복지센터)</option>
+				<option value="광산구7호점">광산구7호점(첨단LC타워)</option>
+				<option value="광산구8호점">광산구8호점(평동역)</option>
+				<option value="광산구9호점">광산구9호점(하남산업단지관리공단)</option>
+			</select>
+		</div>
+		<button id="search-btn" type="button">검색</button>
+	</div>
+	<!-- 검색 결과를 표시할 공간 -->
+	<div id="results"></div>
+	<script>
+        // 지점 데이터를 미리 정의
+        const hoData = {
+            광주전체: ["동구1호점(문화센터)", "동구2호점(국민체육센터)", "동구3호점(용산모아엘가)", "서구1호점(상무역4번출구)", "서구2호점(서구청민원실)", "서구3호점(운천역지하1층)", "서구4호점(풍암행복복지센터)", "서구5호점(나라키움광주통합청사)", "서구6호점(청소년꿈누리센터)", "남구1호점(진월다사랑치킨)", "남구2호점(주월2행정복지센터)", "남구3호점(백운광장스트리트푸드존)", "남구4호점(다목적체육관)", "남구5호점(효천공원)", "북구1호점(광주역광장)", "북구2호점(한국산업단지공단)", "북구3호점(북구청우측별관)", "광산구1호점(광산구청송정보건지소)", "광산구2호점(송정공원역)", "광산구3호점(수완행정복지센터)", "광산구4호점(신창행정복지센터)", "광산구5호점(쌍암공원관리사무소)", "광산구6호점(월곡1행정복지센터)", "광산구7호점(첨단LC타워)", "광산구8호점(평동역)", "광산구9호점(하남산업단지관리공단)"],
+            동구: ["동구1호점(문화센터)", "동구2호점(국민체육센터)", "동구3호점(용산모아엘가)"],
+            서구: ["서구1호점(상무역4번출구)", "서구2호점(서구청민원실)", "서구3호점(운천역지하1층)", "서구4호점(풍암행복복지센터)", "서구5호점(나라키움광주통합청사)", "서구6호점(청소년꿈누리센터)"],
+            남구: ["남구1호점(진월다사랑치킨)", "남구2호점(주월2행정복지센터)", "남구3호점(백운광장스트리트푸드존)", "남구4호점(다목적체육관)", "남구5호점(효천공원)"],
+            북구: ["북구1호점(광주역광장)", "북구2호점(한국산업단지공단)", "북구3호점(북구청우측별관)"],
+            광산구: ["광산구1호점(광산구청송정보건지소)", "광산구2호점(송정공원역)", "광산구3호점(수완행정복지센터)", "광산구4호점(신창행정복지센터)", "광산구5호점(쌍암공원관리사무소)", "광산구6호점(월곡1행정복지센터)", "광산구7호점(첨단LC타워)", "광산구8호점(평동역)", "광산구9호점(하남산업단지관리공단)"],
+        };
+       
+        // HTML 요소 가져오기
+        const guSelect = document.getElementById("gu");
+        const hoSelect = document.getElementById("ho");
+        const resultsDiv = document.getElementById("results");
+        const searchBtn = document.getElementById("search-btn");
+
+        // 초기 상태에서 지점 선택 드롭다운 비활성화
+        hoSelect.disabled = true;
+
+        // 구를 선택하면 해당 구의 지점을 업데이트
+        guSelect.addEventListener("change", () => {
+            const gu = guSelect.value; // 선택된 구 가져오기
+            hoSelect.innerHTML = "<option value=''>선택하세요</option>"; // 초기화
+
+            if (gu === "") {
+                hoSelect.disabled = true; // 지점 선택 비활성화
+            } else if (gu === "광주전체") {
+                hoSelect.disabled = true; // 광주 전체 선택 시 비활성화 유지
+            } else {
+                hoSelect.disabled = false; // 지점 선택 활성화
+                if (hoData[gu]) {
+                    hoData[gu].forEach(ho => {
+                        const option = document.createElement("option");
+                        option.value = ho; // 전체 텍스트를 값으로 설정
+                        option.textContent = ho; // 괄호 포함한 텍스트를 표시
+                        hoSelect.appendChild(option);
+                    });
+                } else {
+                    hoSelect.innerHTML = "<option value=''>지점 없음</option>";
+                }
+            }
+        });
+
+        // 지점별 도서 데이터를 정의
+        const bookData = {//도서이미지,제목,저자,장르,출판사
+            "동구1호점(문화센터)" : [
+                { image: "book1.jpg", title: "동구의 역사", author: "홍길동", publisher: "출판사", genre: "장르" },
+                { image: "book2.jpg", title: "광주의 자연", author: "김영희", publisher: "출판사", genre: "장르" },
+            ],
+            "동구2호점(국민체육센터)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "동구3호점(용산모아엘가)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "서구1호점(상무역4번출구)": [
+                { image: "book1.jpg", title: "역사와 전통", author: "최진호", publisher: "출판사", genre: "장르" },
+                { image: "book2.jpg", title: "환경과 생태", author: "고은비", publisher: "출판사", genre: "장르" },
+            ],
+            "서구2호점(서구청민원실)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "서구3호점(운천역지하1층)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "서구4호점(풍암행복복지센터)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "서구5호점(나라키움광주통합청사)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "서구6호점(청소년꿈누리센터)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "남구1호점(진월다사랑치킨)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "남구2호점(주월2행정복지센터)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "남구3호점(백운광장스트리트푸드존)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "남구4호점(다목적체육관)": [
+                { image: "book1.jpg", title: "스마트 라이브러리", author: "이민지", publisher: "출판사", genre: "장르" },
+            ],
+            "남구5호점(효천공원)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "북구1호점(광주역광장)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "북구2호점(한국산업단지공단)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "북구3호점(북구청우측별관)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구1호점(광산구청송정보건지소)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구2호점(송정공원역)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구3호점(수완행정복지센터)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구4호점(신창행정복지센터)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구5호점(쌍암공원관리사무소)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구6호점(월곡1행정복지센터)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구7호점(첨단LC타워)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구8호점(평동역)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ],
+            "광산구9호점(하남산업단지관리공단)": [
+                { image: "book1.jpg", title: "문화의 흐름", author: "박철수", publisher: "출판사", genre: "장르" },
+            ]
+        };
+
+        // 검색 버튼 클릭 시 결과 표시
+        searchBtn.addEventListener("click", () => {
+            const gu = guSelect.value;
+            const ho = hoSelect.value;
+    
+            if (gu) {
+                if (ho) {
+                    resultsDiv.innerHTML = `<h2>검색 결과</h2><p><strong>${gu}</strong> - <strong>${ho}</strong> 검색 완료!</p><br>`;
+                    if (bookData[ho]) {
+                        // 도서 테이블 생성
+                        const books = bookData[ho];
+                        let tableHtml = `
+                            <h3><strong>도서 목록</h3><br>
+                            <table border="1" style="border-collapse: collapse; width: 100%;">
+                                <thead>
+                                    <tr style="background-color: #2E8B57; color: white;">
+                                        <th style="padding: 10px;">#</th>
+                                        <th style="padding: 10px;">이미지</th>
+                                        <th style="padding: 10px;">도서명</th>
+                                        <th style="padding: 10px;">저자</th>
+                                        <th style="padding: 10px;">장르</th>
+                                        <th style="padding: 10px;">출판사</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
+                        books.forEach((book, index) => {
+                            tableHtml += `
+                                <tr>
+                                    <td style="padding: 10px; text-align: center;">${index + 1}</td>
+                                    <td style="padding: 10px; text-align: center;"><img src="${book.image}" width="50" /></td>
+                                    <td style="padding: 10px; text-align: center;">${book.title}</td>
+                                    <td style="padding: 10px; text-align: center;">${book.author}</td>
+                                    <td style="padding: 10px; text-align: center;">${book.genre}</td>
+                                    <td style="padding: 10px; text-align: center;">${book.publisher}</td>
+                                </tr>
+                            `;
+                        });
+                        tableHtml += "</tbody></table>";
+                        resultsDiv.innerHTML += tableHtml;
+                    } else {
+                        resultsDiv.innerHTML += `<p>해당 지점에는 도서 데이터가 없습니다.</p>`;
+                    }
+                } else {
+                    resultsDiv.innerHTML = `<h2>검색 결과</h2><p><strong>${gu}</strong> 검색 완료! (모든 지점)</p>`;
+                }
+            } else {
+                resultsDiv.innerHTML = "<p>구를 선택해주세요.</p>";
+            }
+        });
+    </script>
+</body>
+</html>

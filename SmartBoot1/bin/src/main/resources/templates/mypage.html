@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<link rel="stylesheet" href="assets/css/style.css" />
+<script src="assets/js/smart.js"></script>
+</head>
+<body class="body-style">
+	<div th:replace="~{/header :: body}"></div>
+
+	<div class="wrapping">
+		<div class="mypage-menu">
+			<h2>마이페이지</h2>
+			<a href="#" onclick="showSection('home')">내 정보 홈</a> <a href="#"
+				onclick="showSection('manage')">회원정보 관리</a> <a href="#"
+				onclick="showSection('customize')">맞춤형 개인정보 변경</a>
+		</div>
+
+		<div class="mypage-content">
+			<div id="home" class="content-section active">
+				<h2>내 정보 홈</h2>
+				<table class="info-table">
+					<tr>
+						<td th:text="${session.member.id} + ' 님 환영합니다.'"></td>
+					</tr>
+					<tr>
+						<td>회원정보 관리</td>
+					</tr>
+					<tr>
+						<td>맞춤형 개인정보 변경</td>
+					</tr>
+				</table>
+			</div>
+			<div id="manage" class="content-section">
+				<h2>회원정보 관리</h2>
+				<table class="info-table">
+					<tr>
+						<td>기본정보 확인</td>
+					</tr>
+					<tr>
+						<td>비밀번호 변경</td>
+					</tr>
+					<tr>
+						<td>탈퇴</td>
+					</tr>
+				</table>
+			</div>
+			<div id="customize" class="content-section">
+				<h2>맞춤형 개인정보 변경</h2>
+				<table class="info-table">
+					<tr>
+						<td>요즘 어떠세요?</td>
+					</tr>
+					<tr>
+						<td>요즘 관심사는 무엇인가요?</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

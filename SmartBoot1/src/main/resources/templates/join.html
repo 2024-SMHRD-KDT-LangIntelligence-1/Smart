@@ -136,12 +136,69 @@
 					<label for="pw">비밀번호</label> <input type="password" name="pw"
 						placeholder="PW" required>
 				</div>
+				<!-- 아이디 저장 체크박스 -->
+				<div>
+                	<input type="checkbox" id="saved" name="saved" placeholder="Saved">
+                	<label for="saved">아이디 저장</label>
+                </div><br>
 				<!-- 로그인 버튼 -->
-				<button type="submit" value="LogIn" class="submit-btn">로그인</button>
+				<button type="submit" class="submit-btn">로그인</button>
 				<!-- 하단 회원가입 링크 -->
 				<div class="form-footer">
 					계정이 없으신가요? <a class="go-join">회원가입</a>
 				</div>
+				<script>
+				// 폼 처리 관련 JavaScript 코드
+		        document.addEventListener("DOMContentLoaded", () => {
+		            // 폼 요소 가져오기
+		            const form = document.querySelector("form");
+		            const idInput = document.getElementById("id");
+		            const pwInput = document.getElementById("pw");
+		            const saveCheckbox = document.querySelector('input[name="saved"]');
+
+		            // 페이지 로드 시 저장된 아이디가 있으면 채워줍니다.
+		            const savedId = localStorage.getItem("savedId");
+		            if (savedId) {
+		                idInput.value = savedId;
+		                saveCheckbox.checked = true; // 아이디 저장 체크박스도 체크 상태로 설정
+		            }
+
+		            // 폼 제출 이벤트 리스너
+		            form.addEventListener("submit", (event) => {
+		                event.preventDefault(); // 폼 기본 제출 방지
+
+		                // 입력값 가져오기
+		                const idValue = idInput.value.trim();
+		                const pwValue = pwInput.value.trim();
+		                const idSaved = saveCheckbox.checked;
+
+		                // 입력값 검증
+		                if (!idValue) {
+		                    alert("아이디를 입력하세요.");
+		                    return;
+		                }
+
+		                if (!pwValue) {
+		                    alert("비밀번호를 입력하세요.");
+		                    return;
+		                }
+		                // 아이디 저장 처리
+		                if (isSaved) {
+		                    localStorage.setItem("savedId", idValue); // 아이디 저장
+		                } else {
+		                    localStorage.removeItem("savedId"); // 저장된 아이디 삭제
+		                }
+
+		                // 결과 출력 (디버깅용)
+		                console.log("아이디:", idValue);
+		                console.log("비밀번호:", pwValue);
+		                console.log("아이디 저장:", idSaved);
+
+		                // 로그인 처리 로직 (예: 서버 전송)
+		                alert("로그인 성공!");
+		            });
+		        });
+		    </script>
 			</form>
 		</div>
 	</div>

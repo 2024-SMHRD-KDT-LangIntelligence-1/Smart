@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.smhrd.basic.entity.MemberEntity;
 
-public interface MemberRepo extends JpaRepository<MemberEntity, Long>{
+public interface MemberRepo extends JpaRepository<MemberEntity, String>{
 
 	MemberEntity findByIdAndPw(String id, String pw);
 

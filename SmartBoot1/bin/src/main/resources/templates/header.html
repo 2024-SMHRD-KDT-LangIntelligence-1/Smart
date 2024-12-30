@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header id="header" class="alt">
+		<a href="/" class="logo">Smart Library</a>
+		<nav>
+			<div th:if="${session.member} != null" class="mypage">
+				<a href="/mypage">마이페이지</a>
+			</div>
+			<div th:if="${session.member} != null" class="logout">
+				<a href="/logout">로그아웃</a>
+			</div>
+			<div th:unless="${session.member} != null" class="join">
+				<a>회원가입</a>
+			</div>
+			<div th:unless="${session.member} != null" class="login">
+				<a>로그인</a>
+			</div>
+		</nav>
+	</header>
+</body>
+</html>

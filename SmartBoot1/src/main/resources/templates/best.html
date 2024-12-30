@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-
-<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 	<div class="best-seller wrapping">
-		<h2>이달의 베스트셀러</h2>
+		<h2>이달의 인기도서</h2>
 		<div class="swiper mySwiper">
 			<div class="book-list swiper-wrapper">
 				<div class="book-item swiper-slide" th:each="book : ${books}">

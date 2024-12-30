@@ -13,7 +13,6 @@ public class MemberVO {
 	private String pw;
 	private String birthdate;
 	private String gender;
-	private String genre;
 	private String job;
 	private String preference;
 	private String mood;

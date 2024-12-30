@@ -26,7 +26,6 @@ public class MemberEntity {// entity 객체는 DB를 위한 객체
 		this.pw = vo.getPw();
 		birthdate = vo.getBirthdate();
 		gender = vo.getGender();
-		genre = vo.getGenre();
 		job = vo.getJob();
 		preference = vo.getPreference();
 		mood = vo.getMood();
@@ -34,10 +33,6 @@ public class MemberEntity {// entity 객체는 DB를 위한 객체
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idx;
-	
-	@Column(unique = true)	
 	private String id;
 	
 	@Column(nullable = false)
@@ -47,7 +42,6 @@ public class MemberEntity {// entity 객체는 DB를 위한 객체
 	@Column(length = 100)
 	private String gender;
 	
-	private String genre;
 	private String job;
 	private String preference;
 	private String mood;

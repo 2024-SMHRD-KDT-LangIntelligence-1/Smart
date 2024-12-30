@@ -15,6 +15,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "TB_BOOK") // 테이블 이름과 매핑
 public class BookEntity {// entity 객체는 DB를 위한 객체
+	
+	@Id
+	private Long bookIdx;
+	private String title;
+	private String author;
+	private String publisher;
+	private String isbn;
+	private Integer price;
+	private String bookDesc;
+	private String bookCode;
+	private String bestSeller;
+	private String genre;
+	private String label;
+	private String bookImg;
+	
 	public BookEntity(BookVO param) {
 	     this.bookIdx = param.getBOOK_IDX();
 	     this.title = param.getTITLE();
@@ -30,18 +45,6 @@ public class BookEntity {// entity 객체는 DB를 위한 객체
 	     this.bookImg = param.getBOOK_IMG();
 	 }
 	
-	@Id
-	private Long bookIdx;
-	private String title;
-	private String author;
-	private String publisher;
-	private String isbn;
-	private Integer price;
-	private String bookDesc;
-	private String bookCode;
-	private String bestSeller;
-	private String genre;
-	private String label;
-	private String bookImg;
+	
 
 }

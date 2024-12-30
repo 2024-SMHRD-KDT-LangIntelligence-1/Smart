@@ -10,7 +10,7 @@ a {
 }
 h2 {
 	font-size: 24px;
-    margin: 30px 0 30px;
+    margin: 30px 0;
     font-weight: 700;
     color: #2E8B57;
 }
@@ -456,17 +456,16 @@ to {
 .best-seller .book-list {
 	display: flex;
 	flex-direction: row;
+	text-align: center;
 }
-.best-seller .book-item {
-	
-}
-.best-seller .book-item img {
-    width: 150px;
+.best-seller .book-item img,
+.recommendation .carousel img {
     height: 200px;
     margin-bottom: 10px;
-    box-shadow: 3px 3px #cdcdcd;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 }
-.best-seller .book-item .title {
+.best-seller .book-item .title,
+.recommendation .book-item .title {
 	font-size: 16px;
     overflow: hidden;
     display: -webkit-box;
@@ -474,9 +473,6 @@ to {
     -webkit-box-orient: vertical;
     text-align: center;
     line-height: 1.3;
-}
-.best-seller .book-list {
-	
 }
 .best-seller .button-height {
 	top: 220px;
@@ -554,4 +550,39 @@ to {
 }
 .map-tooltip {
 	height: 20px;
+}
+
+/* 도서추천 */
+.recommendation .book-item {
+    width: 150px;
+    margin: 0 20px;
+}
+.carousel {
+	display: flex;
+	justify-content: center;
+	margin-top: 60px;
+	position: relative;
+	text-align: center;
+}
+
+.carousel img {
+    transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+	transform: scale(1.1);
+}
+
+.carousel button {
+	background-color: #2E8B57;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel button:hover {
+	background-color: #1b5e20;
 }

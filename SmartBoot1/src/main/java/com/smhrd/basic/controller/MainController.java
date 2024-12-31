@@ -59,9 +59,9 @@ public class MainController {
 	
 	@GetMapping("/")
     public String getBooks(Model model) {
-        List<BookEntity> books = bookRepo.findAll();
+		List<BookEntity> books = bookRepo.findByBestSeller("y");
         model.addAttribute("books", books);
-        
+
         
         return "main";
     }

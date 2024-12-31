@@ -586,3 +586,64 @@ to {
 .carousel button:hover {
 	background-color: #1b5e20;
 }
+
+/* 스마트도서관 소장도서 검색 */
+.book-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    height: 80px;
+}
+
+.book-search .form-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.book-search label {
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.book-search select {
+    min-width: 220px; 
+    padding: 8px; 
+    font-size: 13px; 
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 50px;
+}
+
+.book-search button {
+    padding: 8px 30px; 
+    font-size: 13px; 
+    background-color: #2E8B57;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 20px;
+    height: 40px; 
+}
+
+
+.book-search select:disabled {
+	background-color: #f0f0f0;
+	cursor: not-allowed;
+}
+
+.book-search button:hover {
+	background-color: #3cb371;
+}
+
+.book-search #results {
+	margin: 20px 30px;
+}

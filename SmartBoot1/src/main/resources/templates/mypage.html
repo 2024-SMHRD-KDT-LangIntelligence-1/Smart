@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="assets/css/style.css" />
@@ -12,7 +12,7 @@
 	<div th:replace="~{/header :: body}"></div>
 
 	<div class="wrapping">
-		<div class="mypage">
+		<div class="mypage-menu">
 			<h2>마이페이지</h2>
 			<a href="#" onclick="showSection('home')">내 정보 홈</a> <a href="#"
 				onclick="showSection('manage')">회원정보 관리</a> <a href="#"
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 
-	<div class="content">
+	<div class="mypage-content">
 		<div id="home" class="content-section active">
 			<h1>내 정보 홈</h1>
 			<table class="info-table">
@@ -33,14 +33,14 @@
 		<div id="manage" class="content-section manage-section">
 			<h1>회원정보 관리</h1>
 			<form action="/update-info" method="POST"
-				style="margin: 20px 50px 20px 50px;">
-				<div class="form-group1" style="margin-bottom: 20px;">
+				style="margin: 15px 55px 15px 55px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label for="birth">생년월일</label> <input type="date" id="birth"
 						name="birth" required style="width: auto;">
 				</div>
-				<div class="form-group1" style="margin-bottom: 20px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label>성별</label>
-					<div class="radio-group">
+					<div class="mypage-radio-group">
 						<label> <input type="radio" name="gender" value="남"
 							required> 남
 						</label> <label> <input type="radio" name="gender" value="여"
@@ -48,7 +48,7 @@
 						</label>
 					</div>
 				</div>
-				<div class="form-group1" style="margin-bottom: 20px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label for="job">직업</label> <select id="job" name="job" required>
 						<option value="">선택</option>
 						<option value="학생">학생</option>
@@ -67,17 +67,17 @@
 			<hr>
 
 			<form action="/change-password" method="POST"
-				style="margin: 20px 50px 20px 50px;">
-				<div class="form-group1" style="margin-bottom: 20px;">
+				style="margin: 15px 55px 15px 55px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label for="current-password">현재 비밀번호</label> <input
 						type="password" id="current-password" name="current_password"
 						required>
 				</div>
-				<div class="form-group1" style="margin-bottom: 20px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label for="new-password">새 비밀번호</label> <input type="password"
 						id="new-password" name="new_password" required>
 				</div>
-				<div class="form-group1" style="margin-bottom: 20px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
 					<label for="confirm-password">새 비밀번호 확인</label> <input
 						type="password" id="confirm-password" name="confirm_password"
 						required>
@@ -90,9 +90,9 @@
 			<hr>
 
 			<form action="/delete-account" method="POST"
-				style="margin: 20px 50px 20px 50px;">
+				style="margin: 15px 55px 15px 55px;">
 				<p style="color: #dc3545;">탈퇴 시 모든 데이터가 삭제되며 복구할 수 없습니다.</p>
-				<div class="button-group1" style="margin-bottom: 20px;">
+				<div class="button-group1" style="margin-bottom: 15px;">
 					<button type="submit" class="btn btn-danger">회원 탈퇴</button>
 				</div>
 			</form>
@@ -101,9 +101,9 @@
 		<div id="customize" class="content-section customize-section">
 			<form id="step-section step-1 active" style="margin-bottom: 60px">
 				<h1>회원님은 요즘 어떠세요?</h1>
-				<div class="form-group2">
+				<div class="mypage-form-group2">
 					<div id="checkbox-group"
-						style="margin: 10px 0px 10px 50px; display: flex; width: 600px; column-gap: 360px; row-gap: 10px; flex-wrap: wrap; justify-content: flex-start;">
+						style="margin: 10px 0px 10px 50px; display: grid; width: 460px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
 						<label><input type="checkbox" name="feeling" value="기쁨">
 							기쁨</label> <label><input type="checkbox" name="feeling"
 							value="슬픔"> 슬픔</label> <label><input type="checkbox"
@@ -121,9 +121,9 @@
 			</form>
 			<form id="step-section step-2">
 				<h1>회원님의 요즘 관심사는 무엇인가요?</h1>
-				<div class="form-group2">
+				<div class="mypage-form-group2">
 					<div id="checkbox-group"
-						style="margin: 10px 0px 10px 50px; display: flex; width: 480px; column-gap: 270px; row-gap: 10px; justify-content: space-between; flex-wrap: wrap;">
+						style="margin: 10px 0px 10px 50px; display: grid; width: 700px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
 						<label><input type="checkbox" name="interest" value="문학">
 							문학</label> <label><input type="checkbox" name="interest"
 							value="여행"> 여행</label> <label><input type="checkbox"
@@ -167,5 +167,34 @@
 			</form>
 		</div>
 	</div>
+	<script>
+        function setUserInfo(name) {
+            const userGreetingElement = document.getElementById("user-greeting");
+            userGreetingElement.textContent = `${name}님 환영합니다.`;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const userName = "홍길동";
+            setUserInfo(userName);
+        });
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function saveStepData(step) {
+            const checkboxes = document.querySelectorAll(`.step-${step} input[type="checkbox"]`);
+            const selectedValues = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedValues.push(checkbox.value);
+                }
+            });
+            console.log(`Step ${step} data saved:`, selectedValues);
+            alert(`저장 완료`);
+        }
+    </script>
 </body>
 </html>

@@ -745,21 +745,19 @@ h1 {
 
 /* 스마트도서관 소장도서 검색 */
 .book-search {
-   max-width: 1000px;
-   margin: 35px auto;
    padding: 20px;
    background-color: #f1f8e9;
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    text-align: center;
+   margin: 0 auto;
+   width: 1000px;
 }
 
 .search-1 {
    display: flex;
-   align-items: center;
    justify-content: center;
    gap: 60px;
-   margin: 0 auto;
 }
 
 .search-2 {
@@ -767,15 +765,19 @@ h1 {
    align-items: center;
    justify-content: center;
    gap: 60px;
-   margin: 0 auto;
+   margin: 10px auto 0;
+}
+.search-2 .form-group3 {
+	width:100%;
 }
 
 .form-group3 {
-   display: flex;
-   align-items: center;
-   gap: 15px;
-   white-space: nowrap;
-   margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
 }
 
 .book-search label {
@@ -805,13 +807,12 @@ h1 {
 }
 
 .book-search input {
-   min-width: 135%;
+   width: 30%;
    padding: 12px;
    font-size: 16px;
    border: 2px solid #388e3c;
    border-radius: 4px;
    outline: none;
-   margin-right: 10px;
    transition: border-color 0.3s ease;
 }
 
@@ -827,9 +828,12 @@ h1 {
    border: none;
    cursor: pointer;
    border-radius: 4px;
-   margin-left: 20px;
    height: 40px;
    transition: background-color 0.3s ease;
+   display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .book-search button:hover {

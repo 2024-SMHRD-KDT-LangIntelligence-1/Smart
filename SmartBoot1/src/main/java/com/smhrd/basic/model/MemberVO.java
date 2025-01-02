@@ -18,4 +18,5 @@ public class MemberVO {
 	private String mood;
 	private String join_dt;
 	
+	
 }

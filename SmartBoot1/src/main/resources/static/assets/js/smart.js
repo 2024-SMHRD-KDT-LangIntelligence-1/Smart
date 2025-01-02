@@ -44,10 +44,7 @@
 			alert('값을 입력해주세요')
 		}
 	})
-	
-	
-
-})(jQuery);
+});
 
 function showSection(sectionId) {
 	const sections = document.querySelectorAll('.content-section');

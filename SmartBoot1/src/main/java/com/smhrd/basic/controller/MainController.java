@@ -23,14 +23,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MainController {
 	
-	private static final String String = null;
 	@Autowired
 	MemberRepo repo;
 	
-	@GetMapping("/mypage")
-	public String mypage() {
-		return "mypage";
-	}
 	
 	// 회원가입
 	@PostMapping("member/join.do")
@@ -52,6 +47,8 @@ public class MainController {
 		session.removeAttribute("member");
 		return "redirect:/";
 	}
+	
+    
 
 	// 인기도서
 	@Autowired

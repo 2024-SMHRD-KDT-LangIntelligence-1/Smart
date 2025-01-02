@@ -400,6 +400,11 @@ to {
    margin: 0 auto;
 }
 
+body {
+   margin: 0;
+   font-family: pretendard;
+}
+
 h1 {
    font-weight: bold;
     font-size: 30px;
@@ -526,7 +531,7 @@ h1 {
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.info-table td p {
+.info-table td p{
    padding: 35px;
     font-weight: bold;
     font-size: 20px;
@@ -677,7 +682,6 @@ h1 {
    color: #1b5e20;
    border-bottom: 1px solid #c8e6c9;
    transition: background-color 0.3s ease;
-   vertical-align: middle;
 }
 
 .gu-page td:hover {
@@ -783,6 +787,7 @@ h1 {
     height: 40px; 
 }
 
+
 .book-search select:disabled {
    background-color: #f0f0f0;
    cursor: not-allowed;
@@ -794,11 +799,4 @@ h1 {
 
 .book-search #results {
    margin: 20px 30px;
-}
-
-.bottom-area {
-	padding-bottom: 100px;
-}
-.bottom-area .gu-table {
-	max-width: none;
 }

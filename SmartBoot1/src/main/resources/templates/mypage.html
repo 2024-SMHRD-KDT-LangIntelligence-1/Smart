@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="assets/css/style.css" />
 <script src="assets/js/smart.js"></script>
 
@@ -11,170 +11,167 @@
 
 </head>
 <body class="body-style">
-   <div th:replace="~{/header :: body}"></div>
+	<div th:replace="~{/header :: body}"></div>
 
-   <div class="wrapping">
-      <div class="mypage-menu">
-         <h2>마이페이지</h2>
-         <a href="#" onclick="showSection('home')">내 정보 홈</a> <a href="#"
-            onclick="showSection('manage')">회원정보 관리</a> <a href="#"
-            onclick="showSection('customize')">맞춤형 개인정보 변경</a>
-      </div>
-   </div>
+	<div class="wrapping">
+		<div class="mypage-menu">
+			<h2>마이페이지</h2>
+			<a href="#home" onclick="showSection('home')">내 정보 홈</a>
+			<a href="#manage" onclick="showSection('manage')">회원정보 관리</a>
+			<a href="#customize" onclick="showSection('customize')">맞춤형 개인정보 변경</a>
+		</div>
+	</div>
 
-   <div class="mypage-content">
-      <div id="home" class="content-section active">
-         <h1>내 정보 홈</h1>
-         <table class="info-table">
-            <tr>
-               <td><div th:if="${session.member} != null">
-                     <h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1>
-                  </div>
-                  <div th:unless="${session.member} != null">
-                     <h1>로그인 한 세션아이디를 확인해주세요</h1>
-                  </div></td>
-            </tr>
-         </table>
-      </div>
+	<div class="mypage-content">
+		<div id="home" class="content-section active">
+			<h1>내 정보 홈</h1>
+			<table class="info-table">
+				<tr>
+					<td th:if="${session.member} != null">
+						<p th:text="${session.member.id} + ' 님 환영합니다.'"></p>
+					</td>
+				</tr>
+			</table>
+		</div>
 
-      <div id="manage" class="content-section manage-section">
-         <h1>회원정보 관리</h1>
-         <form action="/update-info" method="POST"
-            style="margin: 15px 55px 15px 55px;">
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="birth">생년월일</label> <input type="date" id="birth"
-                  name="birth" required style="width: auto;">
-            </div>
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="gender">성별</label>
-               <div class="mypage-radio-group">
-                  <label> <input type="radio" name="gender" value="남"
-                     required> 남
-                  </label> <label> <input type="radio" name="gender" value="여"
-                     required> 여
-                  </label>
-               </div>
-            </div>
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="job">직업</label> <select id="job" name="job" required>
-                  <option value="">선택</option>
-                  <option value="학생">학생</option>
-                  <option value="무직">취준생</option>
-                  <option value="직장인">직장인</option>
-                  <option value="무직">프리랜서</option>
-                  <option value="주부">주부</option>
-                  <option value="무직">무직</option>
-               </select>
-            </div>
-            <div class="button-group1">
-               <button type="submit" class="btn">수정하기</button>
-            </div>
-         </form>
+		<div id="manage" class="content-section manage-section">
+			<h1>회원정보 관리</h1>
+			<form action="/update-info" method="POST"
+				style="margin: 15px 55px 15px 55px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="birth">생년월일</label> <input type="date" id="birth"
+						name="birth" required style="width: auto;">
+				</div>
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="gender">성별</label>
+					<div class="mypage-radio-group">
+						<label> <input type="radio" name="gender" value="남"
+							required> 남
+						</label> <label> <input type="radio" name="gender" value="여"
+							required> 여
+						</label>
+					</div>
+				</div>
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="job">직업</label> <select id="job" name="job" required>
+						<option value="">선택</option>
+						<option value="학생">학생</option>
+						<option value="무직">취준생</option>
+						<option value="직장인">직장인</option>
+						<option value="무직">프리랜서</option>
+						<option value="주부">주부</option>
+						<option value="무직">무직</option>
+					</select>
+				</div>
+				<div class="button-group1">
+					<button type="submit" class="btn">수정하기</button>
+				</div>
+			</form>
 
-         <hr>
+			<hr>
 
-         <form action="/change-password" method="POST"
-            style="margin: 15px 55px 15px 55px;">
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="current-password">현재 비밀번호</label> <input
-                  type="password" id="current-password" name="current_password"
-                  required>
-            </div>
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="new-password">새 비밀번호</label> <input type="password"
-                  id="new-password" name="new_password" required>
-            </div>
-            <div class="mypage-form-group1" style="margin-bottom: 15px;">
-               <label for="confirm-password">새 비밀번호 확인</label> <input
-                  type="password" id="confirm-password" name="confirm_password"
-                  required>
-            </div>
-            <div class="button-group1">
-               <button type="submit" class="btn">비밀번호 변경</button>
-            </div>
-         </form>
+			<form action="/change-password" method="POST"
+				style="margin: 15px 55px 15px 55px;">
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="current-password">현재 비밀번호</label> <input
+						type="password" id="current-password" name="current_password"
+						required>
+				</div>
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="new-password">새 비밀번호</label> <input type="password"
+						id="new-password" name="new_password" required>
+				</div>
+				<div class="mypage-form-group1" style="margin-bottom: 15px;">
+					<label for="confirm-password">새 비밀번호 확인</label> <input
+						type="password" id="confirm-password" name="confirm_password"
+						required>
+				</div>
+				<div class="button-group1">
+					<button type="submit" class="btn">비밀번호 변경</button>
+				</div>
+			</form>
 
-         <hr>
+			<hr>
 
-         <form action="/delete-account" method="POST"
-            style="margin: 15px 55px 15px 55px;">
-            <p style="color: #dc3545;">탈퇴 시 모든 데이터가 삭제되며 복구할 수 없습니다.</p>
-            <div class="button-group1" style="margin-bottom: 15px;">
-               <button type="submit" class="btn btn-danger">회원 탈퇴</button>
-            </div>
-         </form>
-      </div>
+			<form action="/delete-account" method="POST"
+				style="margin: 15px 55px 15px 55px;">
+				<p style="color: #dc3545;">탈퇴 시 모든 데이터가 삭제되며 복구할 수 없습니다.</p>
+				<div class="button-group1" style="margin-bottom: 15px;">
+					<button type="submit" class="btn btn-danger">회원 탈퇴</button>
+				</div>
+			</form>
+		</div>
 
-      <div id="customize" class="content-section customize-section">
-         <form id="step-section step-1 active" style="margin-bottom: 60px">
-            <h1>회원님은 요즘 어떠세요?</h1>
-            <div class="mypage-form-group2">
-               <div id="checkbox-group"
-                  style="margin: 10px 0px 10px 50px; display: grid; width: 460px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                  <label><input type="checkbox" name="feeling" value="기쁨">
-                     기쁨</label> <label><input type="checkbox" name="feeling"
-                     value="슬픔"> 슬픔</label> <label><input type="checkbox"
-                     name="feeling" value="화남"> 화남</label> <label><input
-                     type="checkbox" name="feeling" value="불안"> 불안</label> <label><input
-                     type="checkbox" name="feeling" value="피곤"> 피곤</label> <label><input
-                     type="checkbox" name="feeling" value="흥분"> 흥분</label> <label><input
-                     type="checkbox" name="feeling" value="평온"> 평온</label> <label><input
-                     type="checkbox" name="feeling" value="혼란"> 혼란</label>
-               </div>
-            </div>
-            <div class="button-group2">
-               <button type="button" class="btn" onclick="saveStepData(1)">저장</button>
-            </div>
-         </form>
-         <form id="step-section step-2">
-            <h1>회원님의 요즘 관심사는 무엇인가요?</h1>
-            <div class="mypage-form-group2">
-               <div id="checkbox-group"
-                  style="margin: 10px 0px 10px 50px; display: grid; width: 700px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                  <label><input type="checkbox" name="interest" value="문학">
-                     문학</label> <label><input type="checkbox" name="interest"
-                     value="여행"> 여행</label> <label><input type="checkbox"
-                     name="interest" value="사회문제"> 사회문제</label> <label><input
-                     type="checkbox" name="interest" value="심리"> 심리</label> <label><input
-                     type="checkbox" name="interest" value="정치"> 정치</label> <label><input
-                     type="checkbox" name="interest" value="종교"> 종교</label> <label><input
-                     type="checkbox" name="interest" value="철학"> 철학</label> <label><input
-                     type="checkbox" name="interest" value="건강"> 건강</label> <label><input
-                     type="checkbox" name="interest" value="요리"> 요리</label> <label><input
-                     type="checkbox" name="interest" value="외교"> 외교</label> <label><input
-                     type="checkbox" name="interest" value="세계정치"> 세계정치</label> <label><input
-                     type="checkbox" name="interest" value="청소년교육"> 청소년교육</label> <label><input
-                     type="checkbox" name="interest" value="취미"> 취미</label> <label><input
-                     type="checkbox" name="interest" value="생활"> 생활</label> <label><input
-                     type="checkbox" name="interest" value="IT"> IT</label> <label><input
-                     type="checkbox" name="interest" value="외국어"> 외국어</label> <label><input
-                     type="checkbox" name="interest" value="패션"> 패션</label> <label><input
-                     type="checkbox" name="interest" value="디자인"> 디자인</label> <label><input
-                     type="checkbox" name="interest" value="의학"> 의학</label> <label><input
-                     type="checkbox" name="interest" value="세계소설"> 세계소설</label> <label><input
-                     type="checkbox" name="interest" value="자기계발"> 자기계발</label> <label><input
-                     type="checkbox" name="interest" value="창업"> 창업</label> <label><input
-                     type="checkbox" name="interest" value="소설"> 소설</label> <label><input
-                     type="checkbox" name="interest" value="세계사"> 세계사</label> <label><input
-                     type="checkbox" name="interest" value="역사"> 역사</label> <label><input
-                     type="checkbox" name="interest" value="문화"> 문화</label> <label><input
-                     type="checkbox" name="interest" value="예술"> 예술</label> <label><input
-                     type="checkbox" name="interest" value="교육도서"> 교육도서</label> <label><input
-                     type="checkbox" name="interest" value="산문"> 산문</label> <label><input
-                     type="checkbox" name="interest" value="시집"> 시집</label> <label><input
-                     type="checkbox" name="interest" value="과학"> 과학</label> <label><input
-                     type="checkbox" name="interest" value="만화"> 만화</label> <label><input
-                     type="checkbox" name="interest" value="오락"> 오락</label> <label><input
-                     type="checkbox" name="interest" value="한국수필"> 한국수필</label>
-               </div>
-            </div>
-            <div class="button-group2">
-               <button type="button" class="btn" onclick="saveStepData(2)">저장</button>
-            </div>
-         </form>
-      </div>
-   </div>
-   <script>
+		<div id="customize" class="content-section customize-section">
+			<form id="step-section step-1 active" style="margin-bottom: 60px">
+				<h1>회원님은 요즘 어떠세요?</h1>
+				<div class="mypage-form-group2">
+					<div id="checkbox-group"
+						style="margin: 10px 0px 10px 50px; display: grid; width: 460px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+						<label><input type="checkbox" name="feeling" value="기쁨">
+							기쁨</label> <label><input type="checkbox" name="feeling"
+							value="슬픔"> 슬픔</label> <label><input type="checkbox"
+							name="feeling" value="화남"> 화남</label> <label><input
+							type="checkbox" name="feeling" value="불안"> 불안</label> <label><input
+							type="checkbox" name="feeling" value="피곤"> 피곤</label> <label><input
+							type="checkbox" name="feeling" value="흥분"> 흥분</label> <label><input
+							type="checkbox" name="feeling" value="평온"> 평온</label> <label><input
+							type="checkbox" name="feeling" value="혼란"> 혼란</label>
+					</div>
+				</div>
+				<div class="button-group2">
+					<button type="button" class="btn" onclick="saveStepData(1)">저장</button>
+				</div>
+			</form>
+			<form id="step-section step-2">
+				<h1>회원님의 요즘 관심사는 무엇인가요?</h1>
+				<div class="mypage-form-group2">
+					<div id="checkbox-group"
+						style="margin: 10px 0px 10px 50px; display: grid; width: 700px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+						<label><input type="checkbox" name="interest" value="문학">
+							문학</label> <label><input type="checkbox" name="interest"
+							value="여행"> 여행</label> <label><input type="checkbox"
+							name="interest" value="사회문제"> 사회문제</label> <label><input
+							type="checkbox" name="interest" value="심리"> 심리</label> <label><input
+							type="checkbox" name="interest" value="정치"> 정치</label> <label><input
+							type="checkbox" name="interest" value="종교"> 종교</label> <label><input
+							type="checkbox" name="interest" value="철학"> 철학</label> <label><input
+							type="checkbox" name="interest" value="건강"> 건강</label> <label><input
+							type="checkbox" name="interest" value="요리"> 요리</label> <label><input
+							type="checkbox" name="interest" value="외교"> 외교</label> <label><input
+							type="checkbox" name="interest" value="세계정치"> 세계정치</label> <label><input
+							type="checkbox" name="interest" value="청소년교육"> 청소년교육</label> <label><input
+							type="checkbox" name="interest" value="취미"> 취미</label> <label><input
+							type="checkbox" name="interest" value="생활"> 생활</label> <label><input
+							type="checkbox" name="interest" value="IT"> IT</label> <label><input
+							type="checkbox" name="interest" value="외국어"> 외국어</label> <label><input
+							type="checkbox" name="interest" value="패션"> 패션</label> <label><input
+							type="checkbox" name="interest" value="디자인"> 디자인</label> <label><input
+							type="checkbox" name="interest" value="의학"> 의학</label> <label><input
+							type="checkbox" name="interest" value="세계소설"> 세계소설</label> <label><input
+							type="checkbox" name="interest" value="자기계발"> 자기계발</label> <label><input
+							type="checkbox" name="interest" value="창업"> 창업</label> <label><input
+							type="checkbox" name="interest" value="소설"> 소설</label> <label><input
+							type="checkbox" name="interest" value="세계사"> 세계사</label> <label><input
+							type="checkbox" name="interest" value="역사"> 역사</label> <label><input
+							type="checkbox" name="interest" value="문화"> 문화</label> <label><input
+							type="checkbox" name="interest" value="예술"> 예술</label> <label><input
+							type="checkbox" name="interest" value="교육도서"> 교육도서</label> <label><input
+							type="checkbox" name="interest" value="산문"> 산문</label> <label><input
+							type="checkbox" name="interest" value="시집"> 시집</label> <label><input
+							type="checkbox" name="interest" value="과학"> 과학</label> <label><input
+							type="checkbox" name="interest" value="만화"> 만화</label> <label><input
+							type="checkbox" name="interest" value="오락"> 오락</label> <label><input
+							type="checkbox" name="interest" value="한국수필"> 한국수필</label>
+					</div>
+				</div>
+				<div class="button-group2">
+					<button type="button" class="btn" onclick="saveStepData(2)">저장</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
         function saveStepData(step) {
             const checkboxes = document.querySelectorAll(`.step-${step} input[type="checkbox"]`);
             const selectedValues = [];

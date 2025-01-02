@@ -19,17 +19,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_USER")
 public class MemberEntity {// entity 객체는 DB를 위한 객체
 	
-	public MemberEntity(MemberVO vo) {
-		this.id = vo.getId();
-		this.pw = vo.getPw();
-		birthdate = vo.getBirthdate();
-		gender = vo.getGender();
-		job = vo.getJob();
-		preference = vo.getPreference();
-		mood = vo.getMood();
-		join_dt = LocalDate.now();
-	}
-	
 	@Id
 	private String id;
 	
@@ -45,5 +34,15 @@ public class MemberEntity {// entity 객체는 DB를 위한 객체
 	private String mood;
 	private LocalDate join_dt;
 	
-
+	public MemberEntity(MemberVO vo) {
+		this.id = vo.getId();
+		this.pw = vo.getPw();
+		this.birthdate = vo.getBirthdate();
+		this.gender = vo.getGender();
+		this.job = vo.getJob();
+		this.preference = vo.getPreference();
+		this.mood = vo.getMood();
+		this.join_dt = LocalDate.now();
+	}
+	
 }

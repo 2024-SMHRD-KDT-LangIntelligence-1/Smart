@@ -4,33 +4,35 @@
 <title>Forty by HTML5 UP</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <!-- Link Swiper's CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="assets/css/style.css" />
-<link rel="stylesheet" href="assets/css/style2.css" />
 
 </head>
 
 <body>
-	<div th:replace="~{/header :: body}"></div>
-	<div th:replace="~{/join :: body}"></div>
-	<div th:replace="~{/best :: body}"></div>
-	<div th:replace="~{/recommendation :: body}"></div>
-	<div th:replace="~{/library_info :: body}"></div>
-	<div th:replace="~{/book_search :: body}"></div>
+   <div th:replace="~{/header :: body}"></div>
+   <div th:replace="~{/join :: body}"></div>
+   <div th:replace="~{/best :: body}"></div>
+   <div th:replace="~{/recommendation :: body}"></div>
+   <div th:replace="~{/library_info :: body}"></div>
+   <div th:replace="~{/book_search :: body}"></div>
 
-	<header class="major">
-		<div th:if="${session.member} != null">
-			<h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1>
-		</div>
-		<div th:unless="${session.member} != null">
-			<h1>로그인 한 세션아이디를 확인해주세요</h1>
-		</div>
-	</header>
+   <header class="major">
+      <div th:if="${session.member} != null">
+         <h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1>
+      </div>
+      <div th:unless="${session.member} != null">
+         <h1>로그인 한 세션아이디를 확인해주세요</h1>
+      </div>
+   </header>
 
-	<!-- Scripts -->
+   <!-- Scripts -->
    <script src="assets/js/jquery.min.js"></script>
    <script src="assets/js/jquery.scrolly.min.js"></script>
    <script src="assets/js/jquery.scrollex.min.js"></script>

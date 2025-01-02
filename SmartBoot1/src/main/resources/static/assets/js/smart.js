@@ -27,7 +27,7 @@
 		$('.form-login').css('display', 'none');
 		$('.bg-container').css('display', 'block');
 	})
-	
+
 	window.goToStep = function(step) {
 		const $steps = $('.form-container');
 		$steps.each(function(index) {
@@ -38,13 +38,16 @@
 			}
 		});
 	};
-	
-	$('.submit-btn').on('click',function() {
-		if($('#id') === "" || $('pw') === ""){
+
+	$('.submit-btn').on('click', function() {
+		if ($('#id') === "" || $('pw') === "") {
 			alert('값을 입력해주세요')
 		}
 	})
-});
+
+
+
+})(jQuery);
 
 function showSection(sectionId) {
 	const sections = document.querySelectorAll('.content-section');

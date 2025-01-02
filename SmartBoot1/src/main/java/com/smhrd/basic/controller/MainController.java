@@ -25,11 +25,15 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	MemberRepo repo;
-	
-	
+
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
+
 	// 회원가입
 	@PostMapping("member/join.do")
 	public String join(MemberVO vo) {
@@ -37,6 +41,7 @@ public class MainController {
 		repo.save(en);
 		return "redirect:/";
 	}
+
 	// 로그인
 	@PostMapping("member/login.do")
 	public String login(String id, String pw, HttpSession session) {
@@ -44,14 +49,13 @@ public class MainController {
 		session.setAttribute("member", enti);
 		return "redirect:/";
 	}
+
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("member");
 		return "redirect:/";
 	}
-	
-    
 
 	// 인기도서
 	@Autowired
@@ -65,33 +69,33 @@ public class MainController {
 	//
 	@Autowired
 	RetentionRepo retentionRepo;
-	
+
 	@GetMapping("/")
-    public String getBooks(Model model) {
-		
+	public String getBooks(Model model) {
+
 		// 인기도서
 		List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
-        model.addAttribute("bestBooks", bestBooks);
+		model.addAttribute("bestBooks", bestBooks);
 
-        // 지역 선택
-        List<String> library = libraryRepo.findRegions();
+		// 지역 선택
+		List<String> library = libraryRepo.findRegions();
 		model.addAttribute("library1", library);
-		
-        return "main";
-    }
-	
+
+		return "main";
+	}
+
 	// 지역을 기준으로 도서관 반환
 	@GetMapping("/getLibrariesByRegion")
 	@ResponseBody
 	public List<LibraryEntity> getLibrariesByRegion(@RequestParam String regionNm) {
-	    return libraryRepo.findByRegionNm(regionNm); 
+		return libraryRepo.findByRegionNm(regionNm);
 	}
-	
-	// 도서관 ID로 해당 도서관의 보유 도서 목록 반환 
+
+	// 도서관 ID로 해당 도서관의 보유 도서 목록 반환
 	@GetMapping("/library/{libIdx}/books")
 	@ResponseBody
-    public List<BookEntity> getBooksByLibraryId(@PathVariable Integer libIdx) {
-        return bookRepo.findBooksByLibraryId(libIdx);
-    }
+	public List<BookEntity> getBooksByLibraryId(@PathVariable Integer libIdx) {
+		return bookRepo.findBooksByLibraryId(libIdx);
+	}
 
 }

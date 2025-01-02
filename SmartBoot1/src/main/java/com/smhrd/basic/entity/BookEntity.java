@@ -44,7 +44,4 @@ public class BookEntity {// entity 객체는 DB를 위한 객체
 	     this.label = param.getLABEL();
 	     this.bookImg = param.getBOOK_IMG();
 	 }
-	
-	
-
 }

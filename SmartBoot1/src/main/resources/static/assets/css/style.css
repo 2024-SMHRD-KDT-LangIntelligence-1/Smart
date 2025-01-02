@@ -682,10 +682,7 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 60px;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 30px;
-    height: 80px;
+    margin: 0 auto;
 }
 
 .book-search .form-group {

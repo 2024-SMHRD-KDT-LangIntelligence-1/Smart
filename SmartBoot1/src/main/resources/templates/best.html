@@ -9,9 +9,9 @@
 		<h2>이달의 인기도서</h2>
 		<div class="swiper mySwiper">
 			<div class="book-list swiper-wrapper">
-				<div class="book-item swiper-slide" th:each="book : ${books}">
-					<img th:src="${book.bookImg}">
-					<div th:text="${book.title}" class="title"></div>
+				<div class="book-item swiper-slide" th:each="bestBook : ${bestBooks}">
+					<img th:src="${bestBook.bookImg}">
+					<div th:text="${bestBook.title}" class="title"></div>
 				</div>
 			</div>
 		</div>

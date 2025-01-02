@@ -263,6 +263,7 @@ to {
     display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
 .form-group {
    margin-bottom: 20px;
@@ -525,7 +526,7 @@ h1 {
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.info-table td {
+.info-table td p {
    padding: 35px;
     font-weight: bold;
     font-size: 20px;
@@ -542,8 +543,12 @@ h1 {
    flex-direction: row;
    text-align: center;
 }
+.best-seller .book-list .book-item {
+	cursor: pointer;
+}
 .best-seller .book-item img,
 .recommendation .carousel img {
+	width: 140px;
     height: 200px;
     margin-bottom: 10px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
@@ -565,6 +570,68 @@ h1 {
 }
 .best-seller .swiper {
    width: 1340px;
+}
+.best-info {
+	width: 900px;
+    padding: 50px;
+    background: #f1f8e9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    z-index: 100;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.best-info .title {
+	font-size: 24px;
+	font-weight: 600;
+	color: #388e3c;
+}
+.best-info .wrap {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+.best-info .wrap img {
+	width: 200px;
+    height: 300px;
+}
+.best-info .sub-wrap {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 20px;
+}
+.best-info .sub-wrap .info {
+	display: flex;
+	line-height: 1.5;
+	color: #333;
+}
+.best-info .sub-wrap .info p {
+	width: 100px;
+	font-weight: 600;
+	color: #388e3c;
+}
+.best-info .sub-wrap .info div {
+	width: 450px;
+}
+.best-info .close {
+	font-size: 16px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background: #388e3c;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    border: 1px solid #2e8b57;
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 /* 스마트도서관 정보 */

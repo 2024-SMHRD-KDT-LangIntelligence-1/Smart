@@ -83,6 +83,12 @@ public class MainController {
 
       return "main";
    }
+   
+   @GetMapping("/book/{bookIdx}")
+   @ResponseBody
+   public BookEntity getBookDetails(@PathVariable Long bookIdx) {
+	   return bookRepo.findById(bookIdx).orElse(null);
+   }
 
    // 지역을 기준으로 도서관 반환
    @GetMapping("/getLibrariesByRegion")

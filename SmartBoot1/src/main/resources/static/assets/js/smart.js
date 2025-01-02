@@ -1,51 +1,65 @@
 (function($) {
-   $('.join').on('click', function() {
-      $('.form-join').css('display', 'block');
-      $('.form-login').css('display', 'none');
-      $('.bg-container').css('display', 'block');
-   })
+	$('.join').on('click', function() {
+		$('.form-join').css('display', 'block');
+		$('.form-login').css('display', 'none');
+		$('.bg-container').css('display', 'block');
+		$('.form-wrapping').css('visibility','visible')
+	})
 
-   $('.login').on('click', function() {
-      $('.form-login').css('display', 'block');
-      $('.form-join').css('display', 'none');
-      $('.bg-container').css('display', 'block');
-   })
+	$('.login').on('click', function() {
+		$('.form-login').css('display', 'block');
+		$('.form-join').css('display', 'none');
+		$('.bg-container').css('display', 'block');
+		$('.form-wrapping').css('visibility','visible')
+	})
 
-   $('.bg-container').on('click', function() {
-      $('.form-login').css('display', 'none');
-      $('.form-join').css('display', 'none');
-      $('.bg-container').css('display', 'none');
-   })
+	$('.bg-container').on('click', function() {
+		$('.form-login').css('display', 'none');
+		$('.form-join').css('display', 'none');
+		$('.bg-container').css('display', 'none');
+		$('.form-wrapping').css('visibility','hidden');
+		$('.best-info').css('display','none');
+	})
 
-   $('.go-login').on('click', function() {
-      $('.form-login').css('display', 'block');
-      $('.form-join').css('display', 'none');
-      $('.bg-container').css('display', 'block');
-   })
-   $('.go-join').on('click', function() {
-      $('.form-join').css('display', 'block');
-      $('.form-login').css('display', 'none');
-      $('.bg-container').css('display', 'block');
-   })
-   
-   window.goToStep = function(step) {
-      const $steps = $('.form-container');
-      $steps.each(function(index) {
-         if (index + 1 === step) {
-            $(this).removeClass('hidden');
-         } else {
-            $(this).addClass('hidden');
-         }
-      });
-   };
-   
-   $('.submit-btn').on('click',function() {
-      if($('#id') === "" || $('pw') === ""){
-         alert('값을 입력해주세요')
-      }
-   })
-   
-   
+	$('.go-login').on('click', function() {
+		$('.form-login').css('display', 'block');
+		$('.form-join').css('display', 'none');
+		$('.bg-container').css('display', 'block');
+	})
+	$('.go-join').on('click', function() {
+		$('.form-join').css('display', 'block');
+		$('.form-login').css('display', 'none');
+		$('.bg-container').css('display', 'block');
+	})
+
+	$('.book-list').on('click', function() {
+		$('.best-info').css('display','flex');
+		$('.bg-container').css('display', 'block');
+		$('.form-wrapping').css('visibility','visible');
+	})
+	
+	$(document).on('click', '.close', function () {
+	    $('.best-info').css('display', 'none');
+	    $('.bg-container').css('display', 'none');
+		$('.form-wrapping').css('visibility','hidden');
+	});
+	window.goToStep = function(step) {
+		const $steps = $('.form-container');
+		$steps.each(function(index) {
+			if (index + 1 === step) {
+				$(this).removeClass('hidden');
+			} else {
+				$(this).addClass('hidden');
+			}
+		});
+	};
+
+	$('.submit-btn').on('click', function() {
+		if ($('#id') === "" || $('pw') === "") {
+			alert('값을 입력해주세요')
+		}
+	})
+
 
 })(jQuery);
 

@@ -5,25 +5,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="form-wrapping">
+		<div class="best-info"></div>	
+	</div>
 	<div class="best-seller wrapping">
 		<h2>이달의 인기도서</h2>
 		<div class="swiper mySwiper">
-			<div class="book-list swiper-wrapper">
-				<div class="book-item swiper-slide" th:each="bestBook : ${bestBooks}">
+			<ul class="book-list swiper-wrapper">
+				<li class="book-item swiper-slide" th:each="bestBook : ${bestBooks}" th:data-id="${bestBook.bookIdx}">
 					<img th:src="${bestBook.bookImg}">
 					<div th:text="${bestBook.title}" class="title"></div>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 		<div class="swiper-button-next button-height"></div>
 		<div class="swiper-button-prev button-height"></div>
 	</div>
-
 	<!-- Swiper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 	<!-- Initialize Swiper -->
 	<script>
+		// 인기도서 슬라이더
 		var swiper = new Swiper(".mySwiper", {
 			slidesPerView: "auto",
 	        centeredSlides: false,
@@ -39,6 +42,41 @@
 				prevEl : ".swiper-button-prev",
 			},
 		});
+		
+		// 도서 한권 클릭했을 때 모달
+		$(".book-list").on('click', 'li', function(){
+			const bookIdx = $(this).data('id');
+			$.ajax({
+				url:`/book/${bookIdx}`,
+				method: 'GET',
+				success: function (book) {
+					const bookDetails = $('.best-info');
+					bookDetails.empty();
+					if (book) {
+						bookDetails.append(`
+								<div class="title">${book.title}</div>
+								<div class="wrap">
+									<img src="${book.bookImg}">
+									<div class="sub-wrap">
+										<div class="info"><p>작가</p>${book.author}</div>
+										<div class="info"><p>출판사</p>${book.publisher}</div>
+										<div class="info"><p>장르</p>${book.genre}</div>
+										<div class="info"><p>도서코드</p>${book.bookCode}</div>
+										<div class="info"><p>책소개</p><div>${book.bookDesc}</div></div>
+									</div>
+								</div>
+								<button class="close">닫기</button>
+						`) 
+						} else {
+							bookDetails.append('<p>도서정보를 가져올 수 없습니다.</p>')
+					}
+				},
+				error: function(){
+					alert('도서정보를 가져오는데 실패했습니다.');
+				}
+			});
+		});
+		
 	</script>
 </body>
 </html>

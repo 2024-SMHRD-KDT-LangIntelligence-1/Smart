@@ -398,55 +398,144 @@ to {
 	width: 1440px;
 	margin: 0 auto;
 }
+
+body {
+	margin: 0;
+	font-family: pretendard;
+}
+
+h1 {
+	font-weight: bold;
+    font-size: 30px;
+    margin: 40px 0 40px 55px;
+}
+
 .mypage-menu {
-	height: 100vh;
-	width: 250px;
-	position: fixed;
-	background-color: #f7f7f7;
-	color: #2E8B57;
+	width: 260px;
+    height: 100vh;
+    position: fixed;
+    background-color: #f7f7f7;
+    color: #2E8B57;
+    padding-top: 30px;
+    margin-inline-start: -10px;
 }
+
+.mypage-menu h2 {
+	font-size: 30px;
+    margin: 30px 0 30px 40px;
+}
+
 .mypage-menu a {
-	padding: 20px;
-	text-decoration: none;
-	font-size: 18px;
-	color: #333;
 	display: block;
-	border-bottom: 1px solid #e0e0e0;
+	padding: 20px 45px;
+	text-decoration: none;
+	font-size: 20px;
 }
+
 .mypage-menu a:hover {
-	background-color: #f7f7f7;
 	color: #2E8B57;
 }
+
 .mypage-content {
-	margin-left: 250px;
+	margin-left: 300px;
+	padding: 20px;
 }
-.mypage-content .content-section {
+
+.content-section {
 	display: none;
 }
-.mypage-content .content-section.active {
+
+.content-section.active {
+	margin-inline-start: 200px;
 	display: block;
 }
-.mypage-content .info-table {
+
+.mypage-form-group1 label, .mypage-form-group2 label {
+	display: block;
+	margin-bottom: 15px;
+	font-size: 19px;
+	color: #495057;
+}
+
+.mypage-form-group1 input, .mypage-form-group1 select {
+	font-size: 15px;
+	width: 25%;
+	padding: 10px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+}
+
+.mypage-radio-group {
+	display: flex;
+	align-items: center;
+	gap: 50px;
+}
+
+.mypage-radio-group label {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	color: #555;
+	cursor: pointer;
+}
+
+.mypage-radio-group input[type="radio"] {
+	margin-right: 10px;
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.btn {
+	padding: 10px 15px;
+	background-color: #2E8B57;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background-color: #3cb371;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+}
+
+.btn-danger:hover {
+	background-color: #c82333;
+}
+
+.button-group1 {
+	display: flex;
+	justify-content: flex-start;
+	margin-inline-start: 400px;
+}
+
+.button-group2 {
+	display: flex;
+    justify-content: center;
+}
+
+.info-table {
 	width: 50%;
 	border-collapse: collapse;
 	margin-inline-start: 50px;
-	margin-inline-end: 100px;
 	background-color: #ffffff;
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.mypage-content .info-table tr {
-	border-bottom: 1px solid #e0e0e0;
-}
-.mypage-content .info-table tr:last-child {
-	border-bottom: none;
-}
-.mypage-content .info-table td {
-	padding: 30px;
-	text-align: left;
-	font-size: 18px;
-	background-color: #f8f7f7;
+
+.info-table td {
+	padding: 35px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2E8B57;
+    background-color: #f7f7f7;
 }
 
 /* 베스트셀러 ----------------------------------------- */

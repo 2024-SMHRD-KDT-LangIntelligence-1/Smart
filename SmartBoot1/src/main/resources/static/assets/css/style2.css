@@ -1,0 +1,147 @@
+body {
+	margin: 0;
+	font-family: pretendard;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 35px 0 30px 50px;
+}
+
+.mypage {
+	width: 250px;
+	height: 100vh;
+	position: fixed;
+	background-color: #f7f7f7;
+	color: #2E8B57;
+	padding-top: 30px;
+}
+
+.mypage h2 {
+	font-size: 30px;
+	margin: 30px 0 30px 20px;
+}
+
+.mypage a {
+	display: block;
+	padding: 15px 20px;
+	color: #333;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.mypage a:hover {
+	color: #2E8B57;
+}
+
+.content {
+	margin-left: 250px;
+	padding: 20px;
+}
+
+.content-section {
+	display: none;
+}
+
+.content-section.active {
+	display: block;
+}
+
+.form-group1 label, .form-group2 label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #495057;
+}
+
+.form-group1 input, .form-group1 select {
+	font-size: 15px;
+	width: 20%;
+	padding: 10px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+}
+
+.checkbox-group {
+	margin: 10px 0px 10px 50px;
+	display: flex;
+	width: 600px;
+	column-gap: 350px;
+	row-gap: 10px;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.radio-group {
+	display: flex;
+	align-items: center;
+	gap: 50px;
+}
+
+.radio-group label {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	color: #555;
+	cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+	margin-right: 10px;
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.btn {
+	padding: 10px 15px;
+	background-color: #2E8B57;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.btn:hover {
+	background-color: #3cb371;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+}
+
+.btn-danger:hover {
+	background-color: #c82333;
+}
+
+.button-group1 {
+	display: flex;
+	justify-content: flex-start;
+	margin-inline-start: 340px;
+}
+
+.button-group2 {
+	display: flex;
+	justify-content: flex-start;
+	margin-inline-start: 475px;
+}
+
+.info-table {
+	width: 50%;
+	border-collapse: collapse;
+	margin-inline-start: 50px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-table td {
+	padding: 35px;
+	font-weight: bold;
+	font-size: 20px;
+	color: #2E8B57;
+	background-color: #f7f7f7;
+}

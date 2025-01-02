@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class=wrapping>
+	<div class="wrapping bottom-area">
 		<h2>스마트도서관 소장도서 검색</h2>
 		
 		<div class="book-search">
@@ -34,15 +34,22 @@
 
 		</div>
 		<!-- 도서 결과 -->
-		<div id="book-list">
-				<ul>
-					<li>도서명</li>
-					<li>저자</li>
-					<li>출판사</li>
-				</ul>
-			<div class="list-head">
-			</div>
+		<div class="gu-table">
+			<table class="gu-page">
+				<thead>
+					<tr>						
+						<th></th>
+						<th>표지</th>
+						<th>도서명</th>
+						<th>저자</th>
+						<th>출판사</th>
+					</tr>
+				</thead>
+			<tbody class="search-item"></tbody>
+		</table>
 		</div>
+		
+		
 	</div>
 	
 	<script>
@@ -81,18 +88,18 @@
                         url: `/library/${selectedLibrary}/books`,
                         method: 'GET',
                         success: function (books) {
-                            const bookList = $('.list-head');
+                            const bookList = $('.search-item');
                             bookList.empty();
                             if (books.length > 0) {
-                                books.forEach(function (book) {
+                                books.forEach(function (book, index) {
                                     bookList.append(`
-                                   		<div>
-                            				<ul>
-                            					<li>${book.title}</li>
-                            					<li>${book.author}</li>
-                            					<li>${book.publisher}</li>
-                            				</ul>
-                            			</div>
+                            				<tr>                                    
+                             					<td>${index + 1}</td>
+                            					<td><img src=${book.bookImg}></td>
+                             					<td>${book.title}</td>
+                            					<td>${book.author}</td>
+                            					<td>${book.publisher}</td>
+                            				</tr>
                                     `);
                                 });
                             } else {

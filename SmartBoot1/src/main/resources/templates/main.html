@@ -23,15 +23,6 @@
    <div th:replace="~{/library_info :: body}"></div>
    <div th:replace="~{/book_search :: body}"></div>
 
-   <header class="major">
-      <div th:if="${session.member} != null">
-         <h1 th:text="${session.member.id} + ' 님 환영합니다.'"></h1>
-      </div>
-      <div th:unless="${session.member} != null">
-         <h1>로그인 한 세션아이디를 확인해주세요</h1>
-      </div>
-   </header>
-
    <!-- Scripts -->
    <script src="assets/js/jquery.min.js"></script>
    <script src="assets/js/jquery.scrolly.min.js"></script>

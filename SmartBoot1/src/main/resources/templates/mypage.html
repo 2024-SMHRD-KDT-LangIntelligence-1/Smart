@@ -16,9 +16,9 @@
 	<div class="wrapping">
 		<div class="mypage-menu">
 			<h2>마이페이지</h2>
-			<a href="#" onclick="showSection('home')">내 정보 홈</a> <a href="#"
-				onclick="showSection('manage')">회원정보 관리</a> <a href="#"
-				onclick="showSection('customize')">맞춤형 개인정보 변경</a>
+			<a href="#home" onclick="showSection('home')">내 정보 홈</a>
+			<a href="#manage" onclick="showSection('manage')">회원정보 관리</a>
+			<a href="#customize" onclick="showSection('customize')">맞춤형 개인정보 변경</a>
 		</div>
 	</div>
 
@@ -28,7 +28,7 @@
 			<table class="info-table">
 				<tr>
 					<td th:if="${session.member} != null">
-							<p th:text="${session.member.id} + ' 님 환영합니다.'"></p>
+						<p th:text="${session.member.id} + ' 님 환영합니다.'"></p>
 					</td>
 				</tr>
 			</table>

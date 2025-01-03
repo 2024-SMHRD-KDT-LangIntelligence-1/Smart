@@ -2,28 +2,146 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="assets/css/style.css" />
 <script src="assets/js/smart.js"></script>
 
 <title>마이페이지</title>
 
 </head>
+<<<<<<< HEAD
 
 <body class="body-style">
 	<input type="hidden" id="user_id" value="${sessionScope.loggedInUser.id}" />
+=======
+<body>
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-KDT-LangIntelligence-1/Smart.git
 	<div th:replace="~{/header :: body}"></div>
+    <div th:replace="~{/join :: body}"></div>
 
-	<div class="wrapping">
+	<div class="wrapping" style="display: flex;">
 		<div class="mypage-menu">
 			<h2>마이페이지</h2>
-			<a href="#home" onclick="showSection('home')">내 정보 홈</a>
-			<a href="#manage" onclick="showSection('manage')">회원정보 관리</a>
-			<a href="#customize" onclick="showSection('customize')">맞춤형 개인정보 변경</a>
+			<a href="#" onclick="showSection('home')">내 정보 홈</a>
+			<a href="#" onclick="showSection('manage')">회원정보 관리</a>
+		</div>
+		
+		<div class="mypage-content">
+			<div id="home" class="content-section active">
+				<h1>내 정보 홈</h1>
+				<table class="info-table">
+					<tr>
+						<td th:if="${session.member} != null">
+							<p th:text="${session.member.id} + ' 님 환영합니다.'"></p>
+							<p th:text="'생년월일은 '+${session.member.birthdate} + ' 입니다.'"></p>
+							<p th:text="'성별은 '+${session.member.gender} + '성 입니다.'"></p>
+							<p th:text="'직업은 '+${session.member.job} + ' 입니다.'"></p>
+							<p th:text="'요즘 기분은 '+${session.member.mood} + ' 입니다.'"></p>
+							<p th:text="'관심사는 '+${session.member.preference} + ' 입니다.'"></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		
+			<!-- 성공 및 에러 메시지 표시 -->
+		    <div th:if="${success}" th:text="${success}" style="color:green;"></div>
+		    <div th:if="${error}" th:text="${error}" style="color:red;"></div>
+			
+			<div id="manage" class="content-section manage-section" th:if="${member}">
+				<form action="/mypage/update" method="post">
+					<h1>회원정보 관리</h1>
+					<div class="mypage-form-group1">
+						<label for="birth">생년월일</label>
+						<input type="date" id="birth" name="birthdate" th:value="${member.birthdate}" required style="width: auto;">
+					</div>
+					
+					<div class="mypage-form-group1">
+						<label for="gender">성별</label>
+						<div class="mypage-radio-group">
+							<label><input type="radio" name="gender" value="남" required th:checked="${member.gender == '남'}" >남</label>
+							<label><input type="radio" name="gender" value="여" required th:checked="${member.gender == '여'}" >여</label>
+						</div>
+					</div>
+					
+					<div class="mypage-form-group1">
+						<label for="job">직업</label>
+						<select id="job" name="job">
+							<option value="">선택</option>
+							<option value="학생" th:selected="${member.job == '학생'}">학생</option>
+							<option value="취준생" th:selected="${member.job == '취준생'}">취준생</option>
+							<option value="직장인" th:selected="${member.job == '직장인'}">직장인</option>
+							<option value="프리랜서" th:selected="${member.job == '프리랜서'}">프리랜서</option>
+							<option value="주부" th:selected="${member.job == '주부'}">주부</option>
+							<option value="무직" th:selected="${member.job == '무직'}">무직</option>
+						</select>
+					</div>
+					
+					<!-- 기분 -->
+					<h1>회원님은 요즘 어떠세요?</h1>
+					<div class="mypage-form-group1">
+						<div id="checkbox-group">
+							<label><input type="checkbox" name="mood" value="기쁨" th:checked="${member.mood == '기쁨'}" > 기쁨</label>
+							<label><input type="checkbox" name="mood" value="슬픔" th:checked="${member.mood == '슬픔'}" > 슬픔</label>
+							<label><input type="checkbox" name="mood" value="화남" th:checked="${member.mood == '화남'}" > 화남</label>
+							<label><input type="checkbox" name="mood" value="불안" th:checked="${member.mood == '불안'}" > 불안</label>
+							<label><input type="checkbox" name="mood" value="피곤" th:checked="${member.mood == '피곤'}" > 피곤</label>
+							<label><input type="checkbox" name="mood" value="흥분" th:checked="${member.mood == '흥분'}" > 흥분</label>
+							<label><input type="checkbox" name="mood" value="평온" th:checked="${member.mood == '평온'}" > 평온</label>
+							<label><input type="checkbox" name="mood" value="혼란" th:checked="${member.mood == '혼란'}" > 혼란</label>
+						</div>
+					</div>
+					
+					<!-- 관심사 -->
+					<h1>회원님의 요즘 관심사는 무엇인가요?</h1>
+					<div class="mypage-form-group1">
+						<div id="checkbox-group">
+							<label><input type="checkbox" name="preference" value="문학" th:checked="${member.preference == '문학'}" > 문학</label>
+							<label><input type="checkbox" name="preference" value="여행" th:checked="${member.preference == '여행'}" > 여행</label>
+							<label><input type="checkbox" name="preference" value="사회문제" th:checked="${member.preference == '사회문제'}" > 사회문제</label>
+							<label><input type="checkbox" name="preference" value="심리" th:checked="${member.preference == '심리'}" > 심리</label>
+							<label><input type="checkbox" name="preference" value="정치" th:checked="${member.preference == '정치'}" > 정치</label>
+							<label><input type="checkbox" name="preference" value="종교" th:checked="${member.preference == '종교'}" > 종교</label>
+							<label><input type="checkbox" name="preference" value="철학" th:checked="${member.preference == '철학'}" > 철학</label>
+							<label><input type="checkbox" name="preference" value="건강" th:checked="${member.preference == '건강'}" > 건강</label>
+							<label><input type="checkbox" name="preference" value="요리" th:checked="${member.preference == '요리'}" > 요리</label>
+							<label><input type="checkbox" name="preference" value="외교" th:checked="${member.preference == '외교'}" > 외교</label>
+							<label><input type="checkbox" name="preference" value="세계정치" th:checked="${member.preference == '세계정치'}" > 세계정치</label>
+							<label><input type="checkbox" name="preference" value="청소년교육" th:checked="${member.preference == '청소년교육'}" > 청소년교육</label>
+							<label><input type="checkbox" name="preference" value="취미" th:checked="${member.preference == '취미'}" > 취미</label>
+							<label><input type="checkbox" name="preference" value="생활" th:checked="${member.preference == '생활'}" > 생활</label>
+							<label><input type="checkbox" name="preference" value="IT" th:checked="${member.preference == 'IT'}" > IT</label>
+							<label><input type="checkbox" name="preference" value="외국어" th:checked="${member.preference == '외국어'}" > 외국어</label>
+							<label><input type="checkbox" name="preference" value="패션" th:checked="${member.preference == '패션'}" > 패션</label>
+							<label><input type="checkbox" name="preference" value="디자인" th:checked="${member.preference == '디자인'}" > 디자인</label>
+							<label><input type="checkbox" name="preference" value="의학" th:checked="${member.preference == '의학'}" > 의학</label>
+							<label><input type="checkbox" name="preference" value="세계소설" th:checked="${member.preference == '세계소설'}" > 세계소설</label>
+							<label><input type="checkbox" name="preference" value="자기계발" th:checked="${member.preference == '자기계발'}" > 자기계발</label>
+							<label><input type="checkbox" name="preference" value="창업" th:checked="${member.preference == '창업'}" > 창업</label>
+							<label><input type="checkbox" name="preference" value="소설" th:checked="${member.preference == '소설'}" > 소설</label>
+							<label><input type="checkbox" name="preference" value="세계사" th:checked="${member.preference == '세계사'}" > 세계사</label>
+							<label><input type="checkbox" name="preference" value="역사" th:checked="${member.preference == '역사'}" > 역사</label>
+							<label><input type="checkbox" name="preference" value="문화" th:checked="${member.preference == '문화'}" > 문화</label>
+							<label><input type="checkbox" name="preference" value="예술" th:checked="${member.preference == '예술'}" > 예술</label>
+							<label><input type="checkbox" name="preference" value="교육도서" th:checked="${member.preference == '교육도서'}" > 교육도서</label>
+							<label><input type="checkbox" name="preference" value="산문" th:checked="${member.preference == '산문'}" > 산문</label>
+							<label><input type="checkbox" name="preference" value="시집" th:checked="${member.preference == '시집'}" > 시집</label>
+							<label><input type="checkbox" name="preference" value="과학" th:checked="${member.preference == '과학'}" > 과학</label>
+							<label><input type="checkbox" name="preference" value="만화" th:checked="${member.preference == '만화'}" > 만화</label>
+							<label><input type="checkbox" name="preference" value="오락" th:checked="${member.preference == '오락'}" > 오락</label>
+							<label><input type="checkbox" name="preference" value="한국수필" th:checked="${member.preference == '한국수필'}" > 한국수필</label>
+						</div>
+					</div>
+					
+					<!-- 수정하기 버튼 -->
+					<div class="button-group1">
+						<button type="submit" class="btn">수정하기</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 
+<<<<<<< HEAD
 	<div class="mypage-content">
 		<div id="home" class="content-section active">
 			<h1>내 정보 홈</h1>
@@ -204,5 +322,16 @@
 		    });
 		}
 	</script>
+	
+	
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/smart.js"></script>
 </body>
 </html>

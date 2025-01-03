@@ -13,9 +13,5 @@ import com.smhrd.basic.entity.RecomEntity;
 public interface RecomRepo extends JpaRepository<RecomEntity, String>{
 
 	// 인기도서
-	List<BookEntity> findByBestSeller(String title);
-	
-	@Query("SELECT b FROM BookEntity b WHERE b.title = true")
-	List<BookEntity> findRecommendedBooks();
 	
 }

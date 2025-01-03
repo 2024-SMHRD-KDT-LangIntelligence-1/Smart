@@ -1,5 +1,6 @@
 package com.smhrd.basic.entity;
 
+import java.security.Timestamp;
 import java.time.LocalDate;
 
 import com.smhrd.basic.model.MemberVO;
@@ -46,5 +47,37 @@ public class MemberEntity {// entity 객체는 DB를 위한 객체
 		this.mood = vo.getMood();
 		this.join_dt = LocalDate.now();
 	}
+
+	    public void setId(String id) {
+	        this.id = id;
+	    }
+	    
+	    public void setPw(String pw) {
+	        this.pw = pw;
+	    }
+
+	    public void setBirthdate(String birthdate) {
+	        this.birthdate = birthdate;
+	    }
+
+	    public void setGender(String gender) {
+	        this.gender = gender;
+	    }
+
+	    public void setJob(String job) {
+	        this.job = job;
+	    }
+
+	    public void setPreference(String preference) {
+	        this.preference = preference;
+	    }
+
+	    public void setMood(String mood) {
+	        this.mood = mood;
+	    }
+
+	    public void setJoinDt(Timestamp joinDt, LocalDate join_dt) {
+	        this.join_dt = join_dt;
+	    }
 	
 }

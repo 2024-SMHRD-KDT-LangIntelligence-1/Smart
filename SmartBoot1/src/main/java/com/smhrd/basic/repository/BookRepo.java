@@ -14,12 +14,15 @@ public interface BookRepo extends JpaRepository<BookEntity, Long>{
 	
 	// 인기도서
 	List<BookEntity> findByBestSeller(String bestSeller);
+	List<BookEntity> findByTitleContainingOrAuthorContaining(String titleKeyword, String authorKeyword);
 	
 	// 도서관 ID로 해당 도서관의 보유 도서 목록 반환 	
-	@Query("SELECT b FROM BookEntity b " +
+	@Query("SELECT b, l.libNm FROM BookEntity b " +
 	           "JOIN RetentionEntity r ON b.bookIdx = r.bookIdx " +
 	           "JOIN LibraryEntity l ON r.libIdx = l.libIdx " +
 	           "WHERE l.libIdx = :libIdx")
-    List<BookEntity> findBooksByLibraryId(@Param("libIdx") Integer libIdx);
+	List<Object[]> findBooksByLibraryIdWithLibraryName(@Param("libIdx") Integer libIdx);
+
+
 	
 }

@@ -115,7 +115,7 @@ to {
    font-size: 32px;
    height: inherit;
    line-height: inherit;
-   padding-left: 230px;
+   padding-left: 240px;
    color: white;
 }
 
@@ -264,6 +264,7 @@ to {
    display: flex;
    justify-content: center;
    align-items: center;
+   visibility: hidden;
 }
 
 .form-group {
@@ -409,12 +410,10 @@ h1 {
 
 .mypage-menu {
    width: 260px;
-   height: 100vh;
-   position: fixed;
+   height: 125vh;
    background-color: #f7f7f7;
    color: #2E8B57;
    padding-top: 30px;
-   margin-inline-start: -10px;
 }
 
 .mypage-menu h2 {
@@ -434,7 +433,6 @@ h1 {
 }
 
 .mypage-content {
-   margin-left: 300px;
    padding: 20px;
 }
 
@@ -443,14 +441,21 @@ h1 {
 }
 
 .content-section.active {
-   margin-inline-start: 200px;
    display: block;
 }
-
+.mypage-form-group1 {
+   margin: 0 0 15px 55px;
+}
+.mypage-form-group1 #checkbox-group {
+    display: grid;
+    width: 500px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 0;
+}
 .mypage-form-group1 label, .mypage-form-group2 label {
    display: block;
    margin-bottom: 15px;
-   font-size: 19px;
+   font-size: 18px;
    color: #495057;
 }
 
@@ -518,7 +523,7 @@ h1 {
 }
 
 .info-table {
-   width: 50%;
+   width: 150%;
    border-collapse: collapse;
    margin-inline-start: 50px;
    background-color: #ffffff;
@@ -528,7 +533,7 @@ h1 {
 }
 
 .info-table td p {
-   padding: 35px;
+   padding: 30px;
    font-weight: bold;
    font-size: 20px;
    color: #2E8B57;
@@ -546,7 +551,7 @@ h1 {
    text-align: center;
 }
 .best-seller .book-list .book-item {
-	cursor: pointer;
+   cursor: pointer;
 }
 .best-seller .book-item img, .recommendation .carousel img {
    height: 200px;
@@ -574,7 +579,7 @@ h1 {
    width: 1340px;
 }
 .best-info {
-	width: 900px;
+   width: 900px;
     padding: 50px;
     background: #f1f8e9;
     border-radius: 8px;
@@ -588,9 +593,9 @@ h1 {
     cursor:pointer;
 }
 .best-info .title {
-	font-size: 24px;
-	font-weight: 600;
-	color: #388e3c;
+   font-size: 24px;
+   font-weight: 600;
+   color: #388e3c;
 }
 .best-info .wrap {
     margin: 20px 0;
@@ -600,7 +605,7 @@ h1 {
     gap: 20px;
 }
 .best-info .wrap img {
-	width: 200px;
+   width: 200px;
     height: 300px;
 }
 .best-info .sub-wrap {
@@ -612,20 +617,20 @@ h1 {
     margin: 10px 0 20px;
 }
 .best-info .sub-wrap .info {
-	display: flex;
-	line-height: 1.5;
-	color: #333;
+   display: flex;
+   line-height: 1.5;
+   color: #333;
 }
 .best-info .sub-wrap .info p {
-	width: 100px;
-	font-weight: 600;
-	color: #388e3c;
+   width: 100px;
+   font-weight: 600;
+   color: #388e3c;
 }
 .best-info .sub-wrap .info div {
-	width: 450px;
+   width: 450px;
 }
 .best-info .close {
-	font-size: 16px;
+   font-size: 16px;
     width: 200px;
     height: 40px;
     border-radius: 10px;
@@ -768,7 +773,7 @@ h1 {
    margin: 10px auto 0;
 }
 .search-2 .form-group3 {
-	width:100%;
+   width:100%;
 }
 
 .form-group3 {
@@ -850,4 +855,9 @@ h1 {
 
 .bottom-area .gu-table {
    max-width: none;
+}
+
+.library-column {
+	width: 200px; /* 원하는 너비로 설정 (예: 200px) */
+	text-align: cental; /* 텍스트 정렬을 조정 */
 }

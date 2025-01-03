@@ -9,17 +9,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecomVO {
 
-    // 책 제목 (Primary Key와 매핑)
-    private String bookTitle;
+	// 추천 번호
+	private Integer reco_idx;
 
-    // 사용자 ID
-    private String userId;
+	// 회원 아이디
+	private String id;
 
-    // 도서 인덱스
-    private Integer bookIndex;
+	// 도서 일련번호
+	private Integer book_idx;
 
-    // 빈 필드
-    private String reservedField;
+	public Integer getRecoIdx() {
+		return reco_idx;
+	}
 
-    // Getters & Setters 생성 (롬복의 @Data가 자동 생성)
+	public void setRecoIdx(Integer reco_idx) {
+		this.reco_idx = reco_idx;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Integer getBookIdx() {
+		return book_idx;
+	}
+
+	public void setBookIdx(Integer book_idx) {
+		this.book_idx = book_idx;
+	}
 }

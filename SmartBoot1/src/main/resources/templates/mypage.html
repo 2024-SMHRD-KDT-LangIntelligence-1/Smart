@@ -5,17 +5,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <link rel="stylesheet" href="assets/css/style.css" />
 <script src="assets/js/smart.js"></script>
-
 <title>마이페이지</title>
-
 </head>
-<<<<<<< HEAD
 
-<body class="body-style">
-	<input type="hidden" id="user_id" value="${sessionScope.loggedInUser.id}" />
-=======
 <body>
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-KDT-LangIntelligence-1/Smart.git
+	<input type="hidden" id="user_id" value="${sessionScope.loggedInUser.id}" />
 	<div th:replace="~{/header :: body}"></div>
     <div th:replace="~{/join :: body}"></div>
 

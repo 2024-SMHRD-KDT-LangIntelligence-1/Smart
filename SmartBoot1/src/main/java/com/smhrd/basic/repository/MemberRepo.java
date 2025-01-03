@@ -7,7 +7,8 @@ import com.smhrd.basic.entity.MemberEntity;
 
 @Repository
 public interface MemberRepo extends JpaRepository<MemberEntity, String>{
-
+	
+	// 로그인 및 회원가입
 	MemberEntity findByIdAndPw(String id, String pw);
-
+	
 }

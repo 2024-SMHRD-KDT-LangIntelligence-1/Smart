@@ -115,7 +115,7 @@ to {
    font-size: 32px;
    height: inherit;
    line-height: inherit;
-   padding-left: 230px;
+   padding-left: 240px;
    color: white;
 }
 
@@ -264,6 +264,7 @@ to {
    display: flex;
    justify-content: center;
    align-items: center;
+   visibility: hidden;
 }
 
 .form-group {
@@ -409,12 +410,10 @@ h1 {
 
 .mypage-menu {
    width: 260px;
-   height: 100vh;
-   position: fixed;
+   height: 125vh;
    background-color: #f7f7f7;
    color: #2E8B57;
    padding-top: 30px;
-   margin-inline-start: -10px;
 }
 
 .mypage-menu h2 {
@@ -434,7 +433,6 @@ h1 {
 }
 
 .mypage-content {
-   margin-left: 300px;
    padding: 20px;
 }
 
@@ -443,14 +441,21 @@ h1 {
 }
 
 .content-section.active {
-   margin-inline-start: 200px;
    display: block;
 }
-
+.mypage-form-group1 {
+	margin: 0 0 15px 55px;
+}
+.mypage-form-group1 #checkbox-group {
+	 display: grid;
+	 width: 500px;
+	 grid-template-columns: repeat(4, 1fr);
+	 gap: 10px 0;
+}
 .mypage-form-group1 label, .mypage-form-group2 label {
    display: block;
    margin-bottom: 15px;
-   font-size: 19px;
+   font-size: 18px;
    color: #495057;
 }
 
@@ -518,7 +523,7 @@ h1 {
 }
 
 .info-table {
-   width: 50%;
+   width: 150%;
    border-collapse: collapse;
    margin-inline-start: 50px;
    background-color: #ffffff;
@@ -528,7 +533,7 @@ h1 {
 }
 
 .info-table td p {
-   padding: 35px;
+   padding: 30px;
    font-weight: bold;
    font-size: 20px;
    color: #2E8B57;

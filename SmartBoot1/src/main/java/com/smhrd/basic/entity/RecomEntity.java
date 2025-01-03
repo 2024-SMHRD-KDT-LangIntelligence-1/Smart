@@ -15,17 +15,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "tb_recommendation")
 public class RecomEntity {
-	
-	@Id
-    private Integer recoIdx;
-	private String id;
-	private Integer bookIdx;
 
-    public RecomEntity(RecomVO param)
-    {
-        this.recoIdx = param.getRecoIdx();
-        this.id = param.getId();
-        this.bookIdx = param.getBookIdx();
+    @Id
+    private String bookTitle;   // 테이블의 primary key와 매핑
+    
+    private String userId;      // 사용자 ID 필드
+    private Integer bookIndex;  // 책 인덱스 필드
+    private String reservedField; // reserve 필드 (널 허용)
+
+    // RecomVO 객체를 이용한 생성자
+    public RecomEntity(RecomVO param) {
+        this.bookTitle = param.getBookTitle();
+        this.userId = param.getUserId();
+        this.bookIndex = param.getBookIndex();
+        this.reservedField = param.getReservedField();
     }
-
+    
+    
 }

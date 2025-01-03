@@ -10,7 +10,9 @@
 <title>마이페이지</title>
 
 </head>
+
 <body class="body-style">
+	<input type="hidden" id="user_id" value="${sessionScope.loggedInUser.id}" />
 	<div th:replace="~{/header :: body}"></div>
 
 	<div class="wrapping">
@@ -172,17 +174,35 @@
 		</div>
 	</div>
 	<script>
-        function saveStepData(step) {
-            const checkboxes = document.querySelectorAll(`.step-${step} input[type="checkbox"]`);
-            const selectedValues = [];
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedValues.push(checkbox.value);
-                }
-            });
-            console.log(`Step ${step} data saved:`, selectedValues);
-            alert(`저장 완료`);
-        }
-    </script>
+		function saveStepData(step) {
+		    const checkboxes = document.querySelectorAll(`.step-${step} input[type="checkbox"]`);
+		    const selectedValues = [];
+		    checkboxes.forEach(checkbox => {
+		        if (checkbox.checked) {
+		            selectedValues.push(checkbox.value);
+		        }
+		    });
+	
+		    // 사용자 아이디(Primary Key를 여기서 가져와야 함. 예: 사용자 세션에서 가져오기)
+			const selectedValuesString = selectedValues.join(","); // 배열 -> 쉼표로 연결된 문자열
+			fetch('http://localhost:8084/update', {
+			    method: 'POST',
+			    headers: { 'Content-Type': 'application/json' },
+			    body: JSON.stringify({ id: user_id, preference: selectedValuesString, step }),
+			})
+		    .then(response => response.json())
+		    .then(data => {
+		        if (data.success) {
+		            alert('저장 완료');
+		            window.location.href = 'http://localhost:8084/';
+		        } else {
+		            alert('저장 실패: ' + data.message);
+		        }
+		    }).catch(error => {
+		        console.error('Error:', error);
+		        alert('저장 중 오류 발생');
+		    });
+		}
+	</script>
 </body>
 </html>

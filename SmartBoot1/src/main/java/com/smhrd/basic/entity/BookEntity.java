@@ -44,4 +44,21 @@ public class BookEntity {// entity 객체는 DB를 위한 객체
 	     this.label = param.getLABEL();
 	     this.bookImg = param.getBOOK_IMG();
 	 }
+	
+	// Getters and setters
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBookImg() {
+        return bookImg;
+    }
+
+    public void setBookImg(String bookImg) {
+        this.bookImg = bookImg;
+    }
 }

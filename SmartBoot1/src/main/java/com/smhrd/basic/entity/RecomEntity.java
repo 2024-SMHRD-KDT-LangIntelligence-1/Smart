@@ -16,17 +16,19 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_recommendation")
 public class RecomEntity {
 
-	@Id
-    private Integer recoIdx;
+    private Long recoIdx;
 	private String id;
+	private String title;
+	@Id
 	private Integer bookIdx;
-
-    public RecomEntity(RecomVO param)
-    {
-        this.recoIdx = param.getRecoIdx();
-        this.id = param.getId();
-        this.bookIdx = param.getBookIdx();
-    }
-    
-    
+	private String bookTitle;
+	
+	public RecomEntity(RecomVO vo) {
+		this.recoIdx = vo.getReco_idx();
+		this.id = vo.getID();
+		this.title = vo.getTitle();
+		this.bookIdx = vo.getBook_idx();
+		this.bookTitle = vo.getBook_title();
+	}
+	
 }

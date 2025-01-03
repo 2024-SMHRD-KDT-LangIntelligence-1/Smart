@@ -1,12 +1,13 @@
 package com.smhrd.basic.controller;
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ import com.smhrd.basic.DTO.BookWithLibraryNameDTO;
 import com.smhrd.basic.entity.BookEntity;
 import com.smhrd.basic.entity.LibraryEntity;
 import com.smhrd.basic.entity.MemberEntity;
+import com.smhrd.basic.entity.RecomEntity;
 import com.smhrd.basic.model.MemberVO;
 import com.smhrd.basic.repository.BookRepo;
 import com.smhrd.basic.repository.LibraryRepo;
@@ -40,6 +42,10 @@ public class MainController {
 
 	@Autowired
 	MemberRepo repo;
+
+	// 추천도서
+	@Autowired
+	RecomRepo recomRepo;
 
 	// 회원가입
 	@PostMapping("member/join.do")
@@ -152,9 +158,6 @@ public class MainController {
 	// 인기도서
 	@Autowired
 	BookRepo bookRepo;
-	// 추천도서
-	@Autowired
-	RecomRepo recomRepo;
 	// 지점 조회
 	@Autowired
 	LibraryRepo libraryRepo;
@@ -162,15 +165,11 @@ public class MainController {
 	RetentionRepo retentionRepo;
 
 	@GetMapping("/")
-	public String getBooks(Model model) {
+	public String getBooks(Model model, String id) {
 
 		// 인기도서
 		List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
 		model.addAttribute("bestBooks", bestBooks);
-
-		// 추천도서
-//		List<BookEntity> bestBook1s = recomRepo.findRecommendedBooks("y");
-//		model.addAttribute("recomBooks", recomBooks);
 
 		// 지역 선택
 		List<String> library = libraryRepo.findRegions();
@@ -178,6 +177,19 @@ public class MainController {
 
 		return "main";
 	}
+	
+	@GetMapping("/{id}")
+	public String getRecommendedBooksByUserId(@PathVariable String id, Model model) {
+	    // 추천 도서를 ID로 조회
+	    List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+	    
+	    // 추천 도서를 모델에 담아서 HTML로 전달
+	    model.addAttribute("recommendedBooks", recommendedBooks);
+
+	    // 추천 도서 목록을 보여줄 HTML 페이지로 리턴
+	    return "recommendation";  // recommendation.html로 이동
+	}
+
 
 	@GetMapping("/book/{bookIdx}")
 	@ResponseBody
@@ -272,4 +284,5 @@ public class MainController {
 		}
 		return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
 	}
+	
 }

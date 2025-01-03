@@ -1,5 +1,6 @@
 package com.smhrd.basic.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.smhrd.basic.DTO.BookWithLibraryNameDTO;
 import com.smhrd.basic.entity.BookEntity;
 import com.smhrd.basic.entity.LibraryEntity;
 import com.smhrd.basic.entity.MemberEntity;
@@ -100,8 +102,28 @@ public class MainController {
 	// 도서관 ID로 해당 도서관의 보유 도서 목록 반환
 	@GetMapping("/library/{libIdx}/books")
 	@ResponseBody
-	public List<BookEntity> getBooksByLibraryId(@PathVariable Integer libIdx) {
-		return bookRepo.findBooksByLibraryId(libIdx);
+	public List<BookWithLibraryNameDTO> getBooksByLibraryId(@PathVariable Integer libIdx) {
+	    List<Object[]> results = bookRepo.findBooksByLibraryIdWithLibraryName(libIdx);
+
+	    // 반환할 리스트 객체에 도서관 이름과 도서 정보를 포함
+	    List<BookWithLibraryNameDTO> booksWithLibrary = new ArrayList<>();
+	    for (Object[] result : results) {
+	        BookEntity book = (BookEntity) result[0];
+	        String libraryName = (String) result[1];
+	        booksWithLibrary.add(new BookWithLibraryNameDTO(book, libraryName));
+	    }
+
+	    return booksWithLibrary;
 	}
+
+	
+	// 도서 검색 (도서관명 포함)
+	@GetMapping("/searchBooks")
+	@ResponseBody
+	public List<Object[]> searchBooks(@RequestParam String keyword) {
+	    return retentionRepo.findBooksWithLibraryByKeyword(keyword);
+	}
+
+
 
 }

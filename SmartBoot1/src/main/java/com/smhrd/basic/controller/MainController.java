@@ -31,11 +31,6 @@ public class MainController {
 	@Autowired
 	MemberRepo repo;
 
-	@GetMapping("/mypage")
-	public String mypage() {
-		return "mypage";
-	}
-
 	// 회원가입
 	@PostMapping("member/join.do")
 	public String join(MemberVO vo) {
@@ -68,10 +63,9 @@ public class MainController {
 	// 지점 조회
 	@Autowired
 	LibraryRepo libraryRepo;
-	//
 	@Autowired
 	RetentionRepo retentionRepo;
-
+	
 	@GetMapping("/")
 	public String getBooks(Model model) {
 
@@ -115,15 +109,58 @@ public class MainController {
 
 	    return booksWithLibrary;
 	}
-
-	
 	// 도서 검색 (도서관명 포함)
 	@GetMapping("/searchBooks")
 	@ResponseBody
 	public List<Object[]> searchBooks(@RequestParam String keyword) {
-	    return retentionRepo.findBooksWithLibraryByKeyword(keyword);
+		return retentionRepo.findBooksWithLibraryByKeyword(keyword);
 	}
+	
+	@GetMapping("/mypage")
+	   public String showMypage(HttpSession session, Model model) {
+	       MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+
+	       if (currentMember != null) {
+	           MemberEntity member = repo.findById(currentMember.getId()).orElse(null);
+	           model.addAttribute("member", member);
+	       } else {
+	           model.addAttribute("error", "로그인이 필요합니다.");
+	       }
+	       
+	       return "mypage";
+	   }
+	   
+	   @PostMapping("/mypage/update")
+	    public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
+	        // 현재 세션에서 사용자 정보 가져오기
+	        MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+
+	        if (currentMember != null) {
+	            // DB에서 현재 사용자의 정보를 가져옵니다.
+	            MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
+
+	            if (existingMember != null) {
+	                // 사용자 정보를 업데이트
+	                existingMember.setBirthdate(updatedMember.getBirthdate());
+	                existingMember.setGender(updatedMember.getGender());
+	                existingMember.setJob(updatedMember.getJob());
+	                existingMember.setPreference(updatedMember.getPreference());
+	                existingMember.setMood(updatedMember.getMood());
+	                
+	                // 변경된 정보를 저장
+	                repo.save(existingMember);
+
+	                // 세션 정보 업데이트
+	                session.setAttribute("member", existingMember);
+
+	                model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
+	            } else {
+	                model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
+	            }
+	        } else {
+	            model.addAttribute("error", "로그인이 필요합니다.");
+	        }
+	        return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
+	    }}
 
 
-
-}

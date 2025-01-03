@@ -54,99 +54,100 @@ public class MainController {
 	public String login(String id, String pw, HttpSession session) {
 		MemberEntity enti = repo.findByIdAndPw(id, pw);
 		session.setAttribute("member", enti);
-		
+
 		try {
-	        RestTemplate restTemplate = new RestTemplate();
-	        String flaskUrl = "http://localhost:5000/user_info"; // Flask 앱의 URL 및 엔드포인트
-	        Map<String, Object> data = new HashMap<>();
-	        data.put("id", enti.getId());
-	        data.put("birthdate", enti.getBirthdate());
-	        data.put("gender", enti.getGender());
-	        data.put("job", enti.getJob());
-	        data.put("preference", enti.getPreference());
-	        data.put("mood", enti.getMood());
-	        data.put("join_dt", enti.getJoin_dt().toString());
+			RestTemplate restTemplate = new RestTemplate();
+			String flaskUrl = "http://localhost:5000/user_info"; // Flask 앱의 URL 및 엔드포인트
+			Map<String, Object> data = new HashMap<>();
+			data.put("id", enti.getId());
+			data.put("birthdate", enti.getBirthdate());
+			data.put("gender", enti.getGender());
+			data.put("job", enti.getJob());
+			data.put("preference", enti.getPreference());
+			data.put("mood", enti.getMood());
+			data.put("join_dt", enti.getJoin_dt().toString());
 
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.setContentType(MediaType.APPLICATION_JSON);
-	        HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
 
-	        restTemplate.postForObject(flaskUrl, request, String.class);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			restTemplate.postForObject(flaskUrl, request, String.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/";
 	}
 
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		
-	    MemberEntity member = (MemberEntity) session.getAttribute("member");
-	    
-	    if (member != null) {
-	        try {
-	            RestTemplate restTemplate = new RestTemplate();
-	            String flaskUrl = "http://localhost:5000/logout"; // Flask 앱의 로그아웃 엔드포인트
-	            
-	            // 요청에 전송할 데이터 생성
-	            Map<String, Object> data = new HashMap<>();
-	            data.put("id", member.getId()); // 사용자 ID를 전송
-	            
-	            HttpHeaders headers = new HttpHeaders();
-	            headers.setContentType(MediaType.APPLICATION_JSON);
-	            HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
-	            
-	            // Flask 로그아웃 엔드포인트 호출
-	            restTemplate.postForObject(flaskUrl, request, String.class);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
-		
+
+		MemberEntity member = (MemberEntity) session.getAttribute("member");
+
+		if (member != null) {
+			try {
+				RestTemplate restTemplate = new RestTemplate();
+				String flaskUrl = "http://localhost:5000/logout"; // Flask 앱의 로그아웃 엔드포인트
+
+				// 요청에 전송할 데이터 생성
+				Map<String, Object> data = new HashMap<>();
+				data.put("id", member.getId()); // 사용자 ID를 전송
+
+				HttpHeaders headers = new HttpHeaders();
+				headers.setContentType(MediaType.APPLICATION_JSON);
+				HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
+
+				// Flask 로그아웃 엔드포인트 호출
+				restTemplate.postForObject(flaskUrl, request, String.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		session.removeAttribute("member");
 		return "redirect:/";
 	}
-	//회원 정보 수정
-	 @Autowired
-	    private MemberRepo memberRepo; // 또는 MemberService와 연결
 
-	 @PostMapping("/update")
-	 public ResponseEntity<?> updateMemberPreferences(@RequestBody Map<String, Object> payload) {
-	     try {
-	         // JSON에서 데이터 추출
-	         String id = (String) payload.get("id");
-	         List<String> preferenceList = (List<String>) payload.get("preference");
-	         String step = String.valueOf(payload.get("step"));
+	// 회원 정보 수정
+	@Autowired
+	private MemberRepo memberRepo; // 또는 MemberService와 연결
 
-	         // 쉼표로 구분된 preference 문자열 생성
-	         String preference = String.join(",", preferenceList);
+	@PostMapping("/update")
+	public ResponseEntity<?> updateMemberPreferences(@RequestBody Map<String, Object> payload) {
+		try {
+			// JSON에서 데이터 추출
+			String id = (String) payload.get("id");
+			List<String> preferenceList = (List<String>) payload.get("preference");
+			String step = String.valueOf(payload.get("step"));
 
-	         System.out.println("Received ID: " + id);
-	         System.out.println("Received Preferences: " + preference);
-	         System.out.println("Step: " + step);
+			// 쉼표로 구분된 preference 문자열 생성
+			String preference = String.join(",", preferenceList);
 
-	         // ID로 회원 검색
-	         Optional<MemberEntity> optionalMember = memberRepo.findById(id);
-	         if (optionalMember.isPresent()) {
-	             MemberEntity member = optionalMember.get();
-	             System.out.println("Existing Preference: " + member.getPreference());
+			System.out.println("Received ID: " + id);
+			System.out.println("Received Preferences: " + preference);
+			System.out.println("Step: " + step);
 
-	             // DB 업데이트
-	             member.setPreference(preference);
-	             memberRepo.save(member);
+			// ID로 회원 검색
+			Optional<MemberEntity> optionalMember = memberRepo.findById(id);
+			if (optionalMember.isPresent()) {
+				MemberEntity member = optionalMember.get();
+				System.out.println("Existing Preference: " + member.getPreference());
 
-	             return ResponseEntity.ok(Map.of("success", true));
-	         } else {
-	             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-	                     .body(Map.of("success", false, "message", "회원 정보 없음"));
-	         }
-	     } catch (Exception e) {
-	         e.printStackTrace();
-	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                 .body(Map.of("success", false, "message", e.getMessage()));
-	     }
-	 }
+				// DB 업데이트
+				member.setPreference(preference);
+				memberRepo.save(member);
+
+				return ResponseEntity.ok(Map.of("success", true));
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body(Map.of("success", false, "message", "회원 정보 없음"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("success", false, "message", e.getMessage()));
+		}
+	}
 
 	// 인기도서
 	@Autowired
@@ -159,7 +160,7 @@ public class MainController {
 	LibraryRepo libraryRepo;
 	@Autowired
 	RetentionRepo retentionRepo;
-	
+
 	@GetMapping("/")
 	public String getBooks(Model model) {
 
@@ -175,14 +176,14 @@ public class MainController {
 		List<String> library = libraryRepo.findRegions();
 		model.addAttribute("library1", library);
 
-      return "main";
-   }
-   
-   @GetMapping("/book/{bookIdx}")
-   @ResponseBody
-   public BookEntity getBookDetails(@PathVariable Long bookIdx) {
-	   return bookRepo.findById(bookIdx).orElse(null);
-   }
+		return "main";
+	}
+
+	@GetMapping("/book/{bookIdx}")
+	@ResponseBody
+	public BookEntity getBookDetails(@PathVariable Long bookIdx) {
+		return bookRepo.findById(bookIdx).orElse(null);
+	}
 
 	// 지역을 기준으로 도서관 반환
 	@GetMapping("/getLibrariesByRegion")
@@ -195,70 +196,80 @@ public class MainController {
 	@GetMapping("/library/{libIdx}/books")
 	@ResponseBody
 	public List<BookWithLibraryNameDTO> getBooksByLibraryId(@PathVariable Integer libIdx) {
-	    List<Object[]> results = bookRepo.findBooksByLibraryIdWithLibraryName(libIdx);
+		List<Object[]> results = bookRepo.findBooksByLibraryIdWithLibraryName(libIdx);
 
-	    // 반환할 리스트 객체에 도서관 이름과 도서 정보를 포함
-	    List<BookWithLibraryNameDTO> booksWithLibrary = new ArrayList<>();
-	    for (Object[] result : results) {
-	        BookEntity book = (BookEntity) result[0];
-	        String libraryName = (String) result[1];
-	        booksWithLibrary.add(new BookWithLibraryNameDTO(book, libraryName));
-	    }
+		// 반환할 리스트 객체에 도서관 이름과 도서 정보를 포함
+		List<BookWithLibraryNameDTO> booksWithLibrary = new ArrayList<>();
+		for (Object[] result : results) {
+			BookEntity book = (BookEntity) result[0];
+			String libraryName = (String) result[1];
+			booksWithLibrary.add(new BookWithLibraryNameDTO(book, libraryName));
+		}
 
-	    return booksWithLibrary;
+		return booksWithLibrary;
 	}
+
 	// 도서 검색 (도서관명 포함)
 	@GetMapping("/searchBooks")
 	@ResponseBody
-	public List<Object[]> searchBooks(@RequestParam String keyword) {
-		return retentionRepo.findBooksWithLibraryByKeyword(keyword);
+	public List<Object[]> searchBooks(@RequestParam(required = false) String region,
+			@RequestParam(required = false) Integer libIdx, @RequestParam String keyword) {
+		if (libIdx != null) {
+			// 도서관을 선택한 경우
+			return retentionRepo.findBooksWithLibraryByLibraryId(libIdx, keyword);
+		} else if (region != null && !region.isEmpty()) {
+			// 지역만 선택한 경우
+			return retentionRepo.findBooksWithLibraryByRegion(region, keyword);
+		} else {
+			// 지역이나 도서관을 선택하지 않은 경우 (전체 검색)
+			return retentionRepo.findBooksWithLibraryByKeyword(keyword);
+		}
 	}
-	
+
 	@GetMapping("/mypage")
-	   public String showMypage(HttpSession session, Model model) {
-	       MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+	public String showMypage(HttpSession session, Model model) {
+		MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
 
-	       if (currentMember != null) {
-	           MemberEntity member = repo.findById(currentMember.getId()).orElse(null);
-	           model.addAttribute("member", member);
-	       } else {
-	           model.addAttribute("error", "로그인이 필요합니다.");
-	       }
-	       
-	       return "mypage";
-	   }
-	   
-	   @PostMapping("/mypage/update")
-	    public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
-	        // 현재 세션에서 사용자 정보 가져오기
-	        MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+		if (currentMember != null) {
+			MemberEntity member = repo.findById(currentMember.getId()).orElse(null);
+			model.addAttribute("member", member);
+		} else {
+			model.addAttribute("error", "로그인이 필요합니다.");
+		}
 
-	        if (currentMember != null) {
-	            // DB에서 현재 사용자의 정보를 가져옵니다.
-	            MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
+		return "mypage";
+	}
 
-	            if (existingMember != null) {
-	                // 사용자 정보를 업데이트
-	                existingMember.setBirthdate(updatedMember.getBirthdate());
-	                existingMember.setGender(updatedMember.getGender());
-	                existingMember.setJob(updatedMember.getJob());
-	                existingMember.setPreference(updatedMember.getPreference());
-	                existingMember.setMood(updatedMember.getMood());
-	                
-	                // 변경된 정보를 저장
-	                repo.save(existingMember);
+	@PostMapping("/mypage/update")
+	public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
+		// 현재 세션에서 사용자 정보 가져오기
+		MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
 
-	                // 세션 정보 업데이트
-	                session.setAttribute("member", existingMember);
+		if (currentMember != null) {
+			// DB에서 현재 사용자의 정보를 가져옵니다.
+			MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
 
-	                model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
-	            } else {
-	                model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
-	            }
-	        } else {
-	            model.addAttribute("error", "로그인이 필요합니다.");
-	        }
-	        return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
-	    }}
+			if (existingMember != null) {
+				// 사용자 정보를 업데이트
+				existingMember.setBirthdate(updatedMember.getBirthdate());
+				existingMember.setGender(updatedMember.getGender());
+				existingMember.setJob(updatedMember.getJob());
+				existingMember.setPreference(updatedMember.getPreference());
+				existingMember.setMood(updatedMember.getMood());
 
+				// 변경된 정보를 저장
+				repo.save(existingMember);
 
+				// 세션 정보 업데이트
+				session.setAttribute("member", existingMember);
+
+				model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
+			} else {
+				model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
+			}
+		} else {
+			model.addAttribute("error", "로그인이 필요합니다.");
+		}
+		return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
+	}
+}

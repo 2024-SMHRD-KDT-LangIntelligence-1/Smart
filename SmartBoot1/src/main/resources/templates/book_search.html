@@ -130,17 +130,26 @@
 			    }
 			});
 		
-		// 도서 검색
+		// 도서 검색 버튼 클릭 이벤트
 		$('.search-2 button').click(function () {
 		    const keyword = $('.search-2 input').val();
+		    const region = $('#region').val(); // 지역 값
+		    const library = $('#library').val(); // 도서관 값
+
 		    if (keyword) {
+		        // 검색 요청
 		        $.ajax({
-		            url: `/searchBooks`,
+		            url: '/searchBooks',
 		            method: 'GET',
-		            data: { keyword: keyword },
+		            data: {
+		                keyword: keyword,
+		                region: region || null, // 지역 값을 전달, 선택되지 않으면 null
+		                libIdx: library || null // 도서관 값을 전달, 선택되지 않으면 null
+		            },
 		            success: function (results) {
 		                const bookList = $('.search-item');
 		                bookList.empty();
+
 		                if (results.length > 0) {
 		                    results.forEach(function (result, index) {
 		                        const book = result[0]; // 도서 정보
@@ -148,7 +157,7 @@
 		                        bookList.append(`
 		                            <tr>
 		                                <td>${index + 1}</td>
-		                                <td><img src=${book.bookImg || ''} alt="표지 이미지 없음"></td>
+		                                <td><img src="${book.bookImg || ''}" alt="표지 이미지 없음"></td>
 		                                <td>${book.title}</td>
 		                                <td>${book.author}</td>
 		                                <td>${book.publisher}</td>

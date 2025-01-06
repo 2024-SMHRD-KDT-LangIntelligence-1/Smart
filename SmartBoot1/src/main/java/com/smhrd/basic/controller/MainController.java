@@ -200,50 +200,89 @@ public class MainController {
 //	    return "recommendation";  // recommendation.html로 이동
 //	}
 	
-	@GetMapping("/")
-	public String getBooks(Model model, HttpSession session) {
+	private void addCommonAttributes(Model model, HttpSession session) {
 	    // 인기도서 조회
 	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
 	    model.addAttribute("bestBooks", bestBooks);
-
-	    // 사용자 ID 가져오기 (로그인된 경우)
-	    String id = (String) session.getAttribute("userId");
-	    if(id != null && !id.isEmpty()){
-	        // 추천도서 조회
-	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
-	        model.addAttribute("recommendedBooks", recommendedBooks);
-	    }
 
 	    // 지역 선택 조회
 	    List<String> library = libraryRepo.findRegions();
 	    model.addAttribute("library1", library);
 
-	    return "main"; // main.html 또는 main.jsp 등의 템플릿 파일
+	    // 사용자 ID 가져오기 (로그인된 경우 추천도서 조회)
+	    String userId = (String) session.getAttribute("userId");
+	    if (userId != null && !userId.isEmpty()) {
+	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(userId);
+	        model.addAttribute("recommendedBooks", recommendedBooks);
+	        model.addAttribute("isLoggedIn", true);
+	    } else {
+	        model.addAttribute("isLoggedIn", false);
+	    }
+	}
+	
+	@GetMapping("/")
+	public String getBooks(Model model, HttpSession session) {
+	    // 공통 속성 추가
+	    addCommonAttributes(model, session);
+	    return "main"; // main.html 또는 main.jsp
 	}
 
 	@GetMapping("/user/{id}")
-	public String getBooksForUser(@PathVariable String id, Model model, HttpSession session){
-	    // 인기도서 조회
-	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
-	    model.addAttribute("bestBooks", bestBooks);
-
+	public String getBooksForUser(@PathVariable String id, Model model, HttpSession session) {
 	    // 세션에서 사용자 ID 확인
-	    String sessionUserId = (String) session.getAttribute("id");
-	    if(sessionUserId != null && sessionUserId.equals(id)){
-	        // 추천도서 조회
-	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
-	        model.addAttribute("recommendedBooks", recommendedBooks);
-	    } else {
-	        // 세션의 사용자 ID와 요청된 ID가 일치하지 않을 때 처리
-	        return "redirect:/member/login.do";
+	    String sessionUserId = (String) session.getAttribute("userId");
+	    if (sessionUserId == null || !sessionUserId.equals(id)) {
+	        return "redirect:/member/login.do"; // 로그인이 필요한 경우 리다이렉트
 	    }
-
-	    // 지역 선택 조회
-	    List<String> library = libraryRepo.findRegions();
-	    model.addAttribute("library1", library);
-
+	    // 공통 속성 추가
+	    addCommonAttributes(model, session);
 	    return "main";
 	}
+	
+//	@GetMapping("/")
+//	public String getBooks(Model model, HttpSession session) {
+//	    // 인기도서 조회
+//	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
+//	    model.addAttribute("bestBooks", bestBooks);
+//
+//	    // 사용자 ID 가져오기 (로그인된 경우)
+//	    String id = (String) session.getAttribute("userId");
+//	    if(id != null && !id.isEmpty()){
+//	        // 추천도서 조회
+//	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+//	        model.addAttribute("recommendedBooks", recommendedBooks);
+//	    }
+//
+//	    // 지역 선택 조회
+//	    List<String> library = libraryRepo.findRegions();
+//	    model.addAttribute("library1", library);
+//
+//	    return "main"; // main.html 또는 main.jsp 등의 템플릿 파일
+//	}
+//
+//	@GetMapping("/user/{id}")
+//	public String getBooksForUser(@PathVariable String id, Model model, HttpSession session){
+//	    // 인기도서 조회
+//	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
+//	    model.addAttribute("bestBooks", bestBooks);
+//
+//	    // 세션에서 사용자 ID 확인
+//	    String sessionUserId = (String) session.getAttribute("id");
+//	    if(sessionUserId != null && sessionUserId.equals(id)){
+//	        // 추천도서 조회
+//	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+//	        model.addAttribute("recommendedBooks", recommendedBooks);
+//	    } else {
+//	        // 세션의 사용자 ID와 요청된 ID가 일치하지 않을 때 처리
+//	        return "redirect:/member/login.do";
+//	    }
+//
+//	    // 지역 선택 조회
+//	    List<String> library = libraryRepo.findRegions();
+//	    model.addAttribute("library1", library);
+//
+//	    return "main";
+//	}
 	
 
 	@GetMapping("/book/{bookIdx}")
@@ -307,37 +346,101 @@ public class MainController {
 		return "mypage";
 	}
 
-	@PostMapping("/mypage/update")
-	public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
-		// 현재 세션에서 사용자 정보 가져오기
-		MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+//	@PostMapping("/mypage/update")
+//	public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
+//		// 현재 세션에서 사용자 정보 가져오기
+//		MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
+//
+//		if (currentMember != null) {
+//			// DB에서 현재 사용자의 정보를 가져옵니다.
+//			MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
+//
+//			if (existingMember != null) {
+//				// 사용자 정보를 업데이트
+//				existingMember.setBirthdate(updatedMember.getBirthdate());
+//				existingMember.setGender(updatedMember.getGender());
+//				existingMember.setJob(updatedMember.getJob());
+//				existingMember.setPreference(updatedMember.getPreference());
+//				existingMember.setMood(updatedMember.getMood());
+//
+//				// 변경된 정보를 저장
+//				repo.save(existingMember);
+//
+//				// 세션 정보 업데이트
+//				session.setAttribute("member", existingMember);
+//
+//				model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
+//			} else {
+//				model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
+//			}
+//		} else {
+//			model.addAttribute("error", "로그인이 필요합니다.");
+//		}
+//		return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
+//	}
+	
+    @PostMapping("/mypage/update")
+    public String updateMemberInfo(MemberEntity updatedMember, HttpSession session, Model model) {
+        // 현재 세션에서 사용자 정보 가져오기
+        MemberEntity currentMember = (MemberEntity) session.getAttribute("member");
 
-		if (currentMember != null) {
-			// DB에서 현재 사용자의 정보를 가져옵니다.
-			MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
+        if (currentMember != null) {
+            // DB에서 현재 사용자의 정보를 가져옵니다.
+            MemberEntity existingMember = repo.findById(currentMember.getId()).orElse(null);
 
-			if (existingMember != null) {
-				// 사용자 정보를 업데이트
-				existingMember.setBirthdate(updatedMember.getBirthdate());
-				existingMember.setGender(updatedMember.getGender());
-				existingMember.setJob(updatedMember.getJob());
-				existingMember.setPreference(updatedMember.getPreference());
-				existingMember.setMood(updatedMember.getMood());
+            if (existingMember != null) {
+                // 사용자 정보를 업데이트
+                existingMember.setBirthdate(updatedMember.getBirthdate());
+                existingMember.setGender(updatedMember.getGender());
+                existingMember.setJob(updatedMember.getJob());
+                existingMember.setPreference(updatedMember.getPreference());
+                existingMember.setMood(updatedMember.getMood());
 
-				// 변경된 정보를 저장
-				repo.save(existingMember);
+                // 변경된 정보를 저장
+                repo.save(existingMember);
 
-				// 세션 정보 업데이트
-				session.setAttribute("member", existingMember);
+                // 세션 정보 업데이트
+                session.setAttribute("member", existingMember);
 
-				model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
-			} else {
-				model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
-			}
-		} else {
-			model.addAttribute("error", "로그인이 필요합니다.");
-		}
-		return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
-	}
+                model.addAttribute("success", "회원정보가 성공적으로 수정되었습니다.");
+
+                // Call Flask endpoint to update user data
+                try {
+                    RestTemplate restTemplate = new RestTemplate();
+                    String flaskUrl = "http://localhost:5000/update_user_data"; // Adjust the URL if needed
+
+                    // Prepare the JSON payload
+                    Map<String, Object> payload = new HashMap<>();
+                    payload.put("id", existingMember.getId());
+                    payload.put("birthdate", existingMember.getBirthdate());
+                    payload.put("gender", existingMember.getGender());
+                    payload.put("job", existingMember.getJob());
+                    payload.put("preference", existingMember.getPreference());
+                    payload.put("mood", existingMember.getMood());
+
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_JSON);
+                    HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, headers);
+
+                    ResponseEntity<Map> response = restTemplate.postForEntity(flaskUrl, request, Map.class);
+
+                    if ("success".equals(response.getBody().get("status"))) {
+                        model.addAttribute("modelSuccess", "모델이 성공적으로 업데이트되었습니다.");
+                    } else {
+                        model.addAttribute("modelError", response.getBody().get("message"));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    model.addAttribute("modelError", "모델 업데이트 중 오류가 발생했습니다.");
+                }
+
+            } else {
+                model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
+            }
+        } else {
+            model.addAttribute("error", "로그인이 필요합니다.");
+        }
+        return "redirect:/mypage"; // 수정 결과를 마이페이지로 반환
+    }
 	
 }

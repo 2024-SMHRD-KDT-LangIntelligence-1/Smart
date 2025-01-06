@@ -111,6 +111,18 @@
     $(document).on('click', '.close', function(){
         $('.best-info').empty();
     });
+    
+    const isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    const loginMessageEl = document.getElementById('loginMessage');
+    const carouselEl = document.getElementById('carousel');
+
+    if (!isLoggedIn) {
+        loginMessageEl.textContent = "추천도서를 확인하려면 로그인을 하세요.";
+        carouselEl.style.display = "none"; // 추천도서 숨김
+    } else {
+        loginMessageEl.textContent = ""; // 메시지 숨김
+        carouselEl.style.display = "block"; // 추천도서 표시
+    }
 </script>
 </body>
 </html>

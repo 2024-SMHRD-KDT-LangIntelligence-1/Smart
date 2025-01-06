@@ -16,6 +16,7 @@
     	</div>
 	</div>
 
+<!-- 
 	<script>
         const prevButton = document.querySelector('.carousel .prev');
         const nextButton = document.querySelector('.carousel .next');
@@ -37,6 +38,79 @@
             updateCarousel();
         });
         updateCarousel();
-    </script>
+    </script>  -->
+    <script>
+    // 인기도서 Swiper 초기화
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 8,
+        spaceBetween: 10,
+        loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".next-popular",
+            prevEl: ".prev-popular",
+        },
+    });
+
+    // 추천도서 Swiper 초기화 (존재할 경우)
+    var recommendedSwiperEl = document.querySelector('.recommendedSwiper');
+    if(recommendedSwiperEl){
+        var recommendedSwiper = new Swiper(".recommendedSwiper", {
+            slidesPerView: 8,
+            spaceBetween: 10,
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".next-recommended",
+                prevEl: ".prev-recommended",
+            },
+        });
+    }
+
+    // 도서 클릭 시 모달 표시
+    $(".book-list").on('click', 'li', function(){
+        const bookIdx = $(this).data('id');
+        $.ajax({
+            url:`/book/${bookIdx}`,
+            method: 'GET',
+            success: function (book) {
+                const bookDetails = $('.best-info');
+                bookDetails.empty();
+                if (book) {
+                    bookDetails.append(`
+                        <div class="title">${book.title}</div>
+                        <div class="wrap">
+                            <img src="${book.bookImg}" alt="${book.title}">
+                            <div class="sub-wrap">
+                                <div class="info"><p>작가</p>${book.author}</div>
+                                <div class="info"><p>출판사</p>${book.publisher}</div>
+                                <div class="info"><p>장르</p>${book.genre}</div>
+                                <div class="info"><p>도서코드</p>${book.bookCode}</div>
+                                <div class="info"><p>책소개</p><div>${book.bookDesc}</div></div>
+                            </div>
+                        </div>
+                        <button class="close">닫기</button>
+                    `); 
+                } else {
+                    bookDetails.append('<p>도서정보를 가져올 수 없습니다.</p>');
+                }
+            },
+            error: function(){
+                alert('도서정보를 가져오는데 실패했습니다.');
+            }
+        });
+    });
+
+    // 모달 닫기 버튼 핸들러
+    $(document).on('click', '.close', function(){
+        $('.best-info').empty();
+    });
+</script>
 </body>
 </html>

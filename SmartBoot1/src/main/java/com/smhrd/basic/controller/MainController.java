@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,6 @@ import com.smhrd.basic.DTO.BookWithLibraryNameDTO;
 import com.smhrd.basic.entity.BookEntity;
 import com.smhrd.basic.entity.LibraryEntity;
 import com.smhrd.basic.entity.MemberEntity;
-import com.smhrd.basic.entity.RecomEntity;
 import com.smhrd.basic.model.MemberVO;
 import com.smhrd.basic.repository.BookRepo;
 import com.smhrd.basic.repository.LibraryRepo;
@@ -57,10 +55,11 @@ public class MainController {
 
 	// 로그인
 	@PostMapping("member/login.do")
-	public String login(String id, String pw, HttpSession session) {
-		MemberEntity enti = repo.findByIdAndPw(id, pw);
-		session.setAttribute("member", enti);
-
+	public String login(HttpSession session, @RequestParam("id") String id, @RequestParam("pw") String pw) {
+	    MemberEntity enti = repo.findByIdAndPw(id, pw);
+	    if (enti != null) {
+	        session.setAttribute("member", enti);
+	        session.setAttribute("userId", enti.getId()); // 세션에 userId 저장
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 			String flaskUrl = "http://localhost:5000/user_info"; // Flask 앱의 URL 및 엔드포인트
@@ -81,8 +80,18 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/";
+			return "redirect:/";
+	    } else {
+	        // 로그인 실패 처리 (예: 에러 메시지 표시)
+	        return "redirect:/member/login.do?error=true";
+	    }
 	}
+	
+	@GetMapping("member/login.do")
+	public String loginPage() {
+	    return "login"; // 로그인 페이지 템플릿 이름
+	}
+	
 
 	// 로그아웃
 	@GetMapping("/logout")
@@ -164,32 +173,78 @@ public class MainController {
 	@Autowired
 	RetentionRepo retentionRepo;
 
+//	@GetMapping("/")
+//	public String getBooks(Model model, String id) {
+//
+//		// 인기도서
+//		List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
+//		model.addAttribute("bestBooks", bestBooks);
+//
+//		// 지역 선택
+//		List<String> library = libraryRepo.findRegions();
+//		model.addAttribute("library1", library);
+//
+//		return "main";
+//	}
+//	
+//	
+//	@GetMapping("/{id}")
+//	public String getRecommendedBooksByUserId(@PathVariable String id, Model model) {
+//	    // 추천 도서를 ID로 조회
+//	    List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+//	    
+//	    // 추천 도서를 모델에 담아서 HTML로 전달
+//	    model.addAttribute("recommendedBooks", recommendedBooks);
+//
+//	    // 추천 도서 목록을 보여줄 HTML 페이지로 리턴
+//	    return "recommendation";  // recommendation.html로 이동
+//	}
+	
 	@GetMapping("/")
-	public String getBooks(Model model, String id) {
+	public String getBooks(Model model, HttpSession session) {
+	    // 인기도서 조회
+	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
+	    model.addAttribute("bestBooks", bestBooks);
 
-		// 인기도서
-		List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
-		model.addAttribute("bestBooks", bestBooks);
+	    // 사용자 ID 가져오기 (로그인된 경우)
+	    String id = (String) session.getAttribute("userId");
+	    if(id != null && !id.isEmpty()){
+	        // 추천도서 조회
+	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+	        model.addAttribute("recommendedBooks", recommendedBooks);
+	    }
 
-		// 지역 선택
-		List<String> library = libraryRepo.findRegions();
-		model.addAttribute("library1", library);
+	    // 지역 선택 조회
+	    List<String> library = libraryRepo.findRegions();
+	    model.addAttribute("library1", library);
 
-		return "main";
+	    return "main"; // main.html 또는 main.jsp 등의 템플릿 파일
+	}
+
+	@GetMapping("/user/{id}")
+	public String getBooksForUser(@PathVariable String id, Model model, HttpSession session){
+	    // 인기도서 조회
+	    List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
+	    model.addAttribute("bestBooks", bestBooks);
+
+	    // 세션에서 사용자 ID 확인
+	    String sessionUserId = (String) session.getAttribute("id");
+	    if(sessionUserId != null && sessionUserId.equals(id)){
+	        // 추천도서 조회
+	        List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
+	        model.addAttribute("recommendedBooks", recommendedBooks);
+	    } else {
+	        // 세션의 사용자 ID와 요청된 ID가 일치하지 않을 때 처리
+	        return "redirect:/member/login.do";
+	    }
+
+	    // 지역 선택 조회
+	    List<String> library = libraryRepo.findRegions();
+	    model.addAttribute("library1", library);
+
+	    return "main";
 	}
 	
-	@GetMapping("/{id}")
-	public String getRecommendedBooksByUserId(@PathVariable String id, Model model) {
-	    // 추천 도서를 ID로 조회
-	    List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
-	    
-	    // 추천 도서를 모델에 담아서 HTML로 전달
-	    model.addAttribute("recommendedBooks", recommendedBooks);
-
-	    // 추천 도서 목록을 보여줄 HTML 페이지로 리턴
-	    return "recommendation";  // recommendation.html로 이동
-	}
-
 
 	@GetMapping("/book/{bookIdx}")
 	@ResponseBody

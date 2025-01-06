@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,6 @@ import com.smhrd.basic.DTO.BookWithLibraryNameDTO;
 import com.smhrd.basic.entity.BookEntity;
 import com.smhrd.basic.entity.LibraryEntity;
 import com.smhrd.basic.entity.MemberEntity;
-import com.smhrd.basic.entity.RecomEntity;
 import com.smhrd.basic.model.MemberVO;
 import com.smhrd.basic.repository.BookRepo;
 import com.smhrd.basic.repository.LibraryRepo;
@@ -57,9 +55,13 @@ public class MainController {
 
 	// 로그인
 	@PostMapping("member/login.do")
-	public String login(String id, String pw, HttpSession session) {
+	public String login(String id, String pw, HttpSession session, Model model) {
 		MemberEntity enti = repo.findByIdAndPw(id, pw);
 		session.setAttribute("member", enti);
+
+		List<BookEntity> recomBooks = recomRepo.findRecommendedBooksByUserId(enti.getId());
+		// 추천 도서를 모델에 담아서 HTML로 전달
+		model.addAttribute("recomBooks", recomBooks);
 
 		try {
 			RestTemplate restTemplate = new RestTemplate();
@@ -77,13 +79,14 @@ public class MainController {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
 
-			restTemplate.postForObject(flaskUrl, request, String.class);
+			restTemplate.postForObject(flaskUrl, request, String.class);		  
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "redirect:/";
 	}
-
+	
+	
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -166,7 +169,6 @@ public class MainController {
 
 	@GetMapping("/")
 	public String getBooks(Model model, String id) {
-
 		// 인기도서
 		List<BookEntity> bestBooks = bookRepo.findByBestSeller("y");
 		model.addAttribute("bestBooks", bestBooks);
@@ -177,19 +179,6 @@ public class MainController {
 
 		return "main";
 	}
-	
-	@GetMapping("/{id}")
-	public String getRecommendedBooksByUserId(@PathVariable String id, Model model) {
-	    // 추천 도서를 ID로 조회
-	    List<BookEntity> recommendedBooks = recomRepo.findRecommendedBooksByUserId(id);
-	    
-	    // 추천 도서를 모델에 담아서 HTML로 전달
-	    model.addAttribute("recommendedBooks", recommendedBooks);
-
-	    // 추천 도서 목록을 보여줄 HTML 페이지로 리턴
-	    return "recommendation";  // recommendation.html로 이동
-	}
-
 
 	@GetMapping("/book/{bookIdx}")
 	@ResponseBody
@@ -217,7 +206,6 @@ public class MainController {
 			String libraryName = (String) result[1];
 			booksWithLibrary.add(new BookWithLibraryNameDTO(book, libraryName));
 		}
-
 		return booksWithLibrary;
 	}
 

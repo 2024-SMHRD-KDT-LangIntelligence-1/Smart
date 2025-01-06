@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <title>나만의 추천도서</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
     <div class="recommendation wrapping">
         <h2>나만의 추천도서</h2>
         <div class="carousel">
-            <div class="book-item" th:each="book : ${recommendedBooks}">
+            <div class="book-item" th:each="book : ${recomBooks}">
             	<img th:src="${book.bookImg}">
             	<div th:text="${book.title}" class="title"></div>
         	</div>
     	</div>
+    	<div class="no-data" th:if="${#lists.isEmpty(recommendedBooks)}">
+		    <p>추천 도서가 없습니다. 관심사를 추가해 보세요!</p>
+		</div>
 	</div>
 
 	<script>

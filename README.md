@@ -107,11 +107,10 @@
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
-    <td align="center"><img src="https://github.com/user-attachments/assets/4ede6ad3-b89c-4468-9ed4-71b6ca5d3273" width="100" height="100"/>
-    </td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/4ede6ad3-b89c-4468-9ed4-71b6ca5d3273" width="100" height="100"/></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/cc9bbab2-f0ec-44df-bbb3-3af377e94f3c" width="100" height="100"/></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/6c6e5aa1-9223-4dc8-be28-59681779cb35" width="100" height="100"/></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/efc4e001-f170-4360-ab3a-e8f8f2277195" height="100"/></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/efc4e001-f170-4360-ab3a-e8f8f2277195" width="100" height="100"/></td>
   </tr>
   <tr>
     <td align="center"><strong>박민지</strong></td>

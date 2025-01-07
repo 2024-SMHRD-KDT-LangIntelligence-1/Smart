@@ -1,23 +1,18 @@
 # 📎 AI기반 사용자 맞춤형 도서추천 플랫폼(팀명: 스마트)
-![image](https://user-images.githubusercontent.com/25995055/178401309-2a2ffc86-ef45-439b-bfd8-6978312100bc.png)
-
 
 ## 👀 서비스 소개
-* 서비스명:  꽃 개화 시기별 우리 지역 근처 데이트/드라이브 추천 장소 및 꽃 축제 추천 
-* 서비스설명: 
-<br>
+* 서비스명:  AI 기반 사용자 맞춤형 도서 추천 플랫폼
+* 서비스설명: 스마트도서관 플랫폼은 광주광역시 스마트도서관을 통합하여 소장도서 통합 조회, 편리한 UI/UX 기반 이용정보 제공, 그리고 OpenAI를 활용한 맞춤형 도서 추천 서비스를 통해 사용자에게 쉽고 효율적인 도서 이용 환경을 제공하는 서비스
 
 ## 📅 프로젝트 기간
 2024.12.23 - 2025.01.08
 <br>
 
 ## ⭐ 주요 기능
-* 기능1
-* 기능2
-* 기능3
-* 기능4
-* 기능5
-<br>
+* 인기도서
+* 추천도서
+* 스마트도서관 정보
+* 도서검색
 
 ## ⛏ 기술스택
 <table>
@@ -26,49 +21,40 @@
         <th>내용</th>
     </tr>
     <tr>
-        <td>사용언어</td>
+        <td>Front-End</td>
         <td>
-            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
-            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
+            <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
+            <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
             <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Jupyter-F7DF1E?style=for-the-badge&logo=Jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>
-        <td>라이브러리</td>
+        <td>IDE</td>
         <td>
-            <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/>
-            <img src="https://img.shields.io/badge/KakaoMap-FFCD00?style=for-the-badge&logo=Kakao&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>개발도구</td>
-        <td>
-            <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=Eclipse&logoColor=white"/>
-            <img src="https://img.shields.io/badge/RaskpberryPi-A22846?style=for-the-badge&logo=RaskpberryPi&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white"/>
             <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>서버환경</td>
-        <td>
-            <img src="https://img.shields.io/badge/Apache Tomcat-D22128?style=for-the-badge&logo=Apache Tomcat&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>데이터베이스</td>
-        <td>
-            <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Oracle 11g-F80000?style=for-the-badge&logo=Oracle&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Colab-ffbe76?style=for-the-badge&logo=Colab&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Jupyter-f6e58d?style=for-the-badge&logo=Jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>
         <td>협업도구</td>
         <td>
-            <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Notion-999999?style=for-the-badge&logo=Notion&logoColor=block"/>
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Back-End</td>
+        <td>
+            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
+            <img src="https://img.shields.io/badge/SpringBoot-6ab04c?style=for-the-badge&logo=SpringBoot&logoColor=white"/>
+            <img src="https://img.shields.io/badge/TomCat-f0932b?style=for-the-badge&logo=TomCat&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
+        <td>데이터베이스</td>
+        <td>
+            <img src="https://img.shields.io/badge/MySQL-7ed6df?style=for-the-badge&logo=MySQL&logoColor=white"/>
         </td>
     </tr>
 </table>
@@ -77,11 +63,11 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조) 예시 
-![서비스 아키텍처](https://user-images.githubusercontent.com/25995055/169925538-15867bd9-aa0b-42fc-a39b-88981e926e51.png)
-<br>
+![image](https://github.com/user-attachments/assets/2ce5150a-24b6-46c4-a56e-bd730f0292d8)
+
 
 ## 📌 SW유스케이스
-![image](https://user-images.githubusercontent.com/25995055/178401023-9a015e66-aa6e-4d74-8564-9b1f9d306649.png)
+![image](https://github.com/user-attachments/assets/077929db-dca3-4265-81fd-bbc41947d798)
 <br>
 
 ## 📌 서비스 흐름도

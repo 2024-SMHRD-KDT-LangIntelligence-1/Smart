@@ -101,7 +101,7 @@
 <br>
 
 ### 도서 검색
-![image](https://github.com/user-attachments/assets/a12b91d4-6684-40fd-876d-109549502c07)
+![image](https://github.com/user-attachments/assets/9776cf00-ed1c-4f2e-9558-89628c507df0)
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할

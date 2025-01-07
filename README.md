@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/e3bee787-482a-4c78-9bc2-2f5e6e97b938)# 📎 AI기반 사용자 맞춤형 도서추천 플랫폼(팀명: 스마트)
+📎 AI기반 사용자 맞춤형 도서추천 플랫폼(팀명: 스마트)
 
 ## 👀 서비스 소개
 * 서비스명:  AI 기반 사용자 맞춤형 도서 추천 플랫폼

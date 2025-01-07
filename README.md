@@ -88,12 +88,20 @@
 ![image](https://github.com/user-attachments/assets/f3528331-57e6-4085-9357-dba5d22f89f9)
 <br>
 
-### 옷 정보/코디 추천(날씨, 팁, 오늘의 코디, 참고할 수 있는 코디)
-![image](https://user-images.githubusercontent.com/25995055/178401127-287e6de2-4396-49fc-a107-59c4d5cd55c7.png)
+### 인기도서
+![image](https://github.com/user-attachments/assets/ec12d9ce-8f91-41a6-8bb7-cfcfc0f93773)
 <br>
 
-### 일정/고객센터
-![image](https://user-images.githubusercontent.com/25995055/178401150-861f0e93-0f40-4fae-98c1-2099bf513c8d.png)
+### 추천도서
+![image](https://github.com/user-attachments/assets/7170af62-2d7f-4770-8880-6470f5f836fe)
+<br>
+
+### 스마트도서관 정보
+![image](https://github.com/user-attachments/assets/321e7a64-0d02-47b7-835c-6cbfe3d1e48d)
+<br>
+
+### 도서 검색
+![image](https://github.com/user-attachments/assets/4ec1b8f9-c53e-47e2-b008-07b9fb4270af)
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할

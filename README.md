@@ -125,10 +125,10 @@
     <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/minchichi" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/YoutubeOfficer" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/Kim-Seon-Bin" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/NaBoram" target='_blank'>github</a></td>
   </tr>
 </table>
 

@@ -119,16 +119,40 @@
     <td align="center"><strong>나보람</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>PM, Back-end</b></td>
-    <td align="center"><b>Back-end</b></td>
-    <td align="center"><b>DB, Crawling</b></td>
-    <td align="center"><b>Front-end</b></td>
+    <td align="center"><strong>Main</strong></td>
+    <td align="center"><strong>Main</strong></td>
+    <td align="center"><strong>Main</strong></td>
+    <td align="center"><strong>Main</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>1. WBS 관리<br>2. 메인, 로그인, 회원가입, 마이페이지 기능 구현</b></td>
-    <td align="center"><b>1. 도서데이터 전처리, 모델링, 평가<br>2. 사용자 맞춤형 도서추천 기능 구현<br>3. 모델 구현</b></td>
-    <td align="center"><b>1. DB 설계 및 구축<br>2. 도서데이터 수집 Crawling<br>3. 메인페이지 기능 구현</b></td>
-    <td align="center"><b>1. 전체페이지 화면 구현<br>2. 서류 작성</b></td>
+    <td align="center">팀장, PM</td>
+    <td align="center">Back-end</td>
+    <td align="center">DB, Crawling</td>
+    <td align="center">Front-end</td>
+  </tr>
+  <tr>
+    <td align="center">1. WBS 관리</td>
+    <td align="center">1. 도서데이터 전처리, 모델링, 평가<br>2. 사용자 맞춤형 도서추천 기능 구현<br>3. 모델 구현</td>
+    <td align="center">1. DB 설계 및 구축<br>2. 도서데이터 수집 Crawling</td>
+    <td align="center">1. 전체페이지 화면 구현</td>
+  </tr>
+  <tr>
+    <td align="center"><b>Sub</b></td>
+    <td align="center"><b>Sub</b></td>
+    <td align="center"><b>Sub</b></td>
+    <td align="center"><b>Sub</b></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Back-end, Front-end</b></td>
+    <td align="center"><b>디자인</b></td>
+    <td align="center"><b>Back-end</b></td>
+    <td align="center"><b>문서</b></td>
+  </tr>
+  <tr>
+    <td align="center">1. 메인, 로그인, 회원가입, 마이페이지 기능 구현</td>
+    <td align="center">1. 전체페이지 화면 구현</td>
+    <td align="center">1. 메인페이지 기능 구현</td>
+    <td align="center">1. 서류 작성</td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/minchichi" target='_blank'>github</a></td>

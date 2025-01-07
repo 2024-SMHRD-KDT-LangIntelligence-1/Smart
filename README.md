@@ -80,7 +80,8 @@
 
 ## 🖥 화면 구성
 
-### 로그인/회원가입/회원괸리/회원수정/회원탈퇴
+### 로그인/회원가입/회원관리/회원수정/회원탈퇴
+![image](https://github.com/user-attachments/assets/dae858fe-1961-4372-ac2b-4a983cc15865)
 ![image](https://user-images.githubusercontent.com/25995055/178401098-95f15a0e-a2de-415e-83d5-883bb4cb0656.png)
 <br>
 

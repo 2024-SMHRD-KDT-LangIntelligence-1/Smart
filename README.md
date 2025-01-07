@@ -143,10 +143,10 @@
     <td align="center"><b>Sub</b></td>
   </tr>
   <tr>
-    <td align="center"><b>Back-end, Front-end</b></td>
-    <td align="center"><b>디자인</b></td>
-    <td align="center"><b>Back-end</b></td>
-    <td align="center"><b>문서</b></td>
+    <td align="center">Back-end, Front-end</td>
+    <td align="center">디자인</td>
+    <td align="center">Back-end</td>
+    <td align="center">문서</td>
   </tr>
   <tr>
     <td align="center">1. 메인, 로그인, 회원가입, 마이페이지 기능 구현</td>

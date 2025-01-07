@@ -119,9 +119,9 @@
     <td align="center"><strong>나보람</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>PM Back-end</b></td>
+    <td align="center"><b>PM, Back-end</b></td>
     <td align="center"><b>Back-end</b></td>
-    <td align="center"><b>DB Crawling</b></td>
+    <td align="center"><b>DB, Crawling</b></td>
     <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>

@@ -113,16 +113,16 @@
     <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
   </tr>
   <tr>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
+    <td align="center"><strong>박민지</strong></td>
+    <td align="center"><strong>권태윤</strong></td>
+    <td align="center"><strong>김선빈</strong></td>
+    <td align="center"><strong>나보람</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Backend</b></td>
+    <td align="center"><b>PM Back-end</b></td>
+    <td align="center"><b>Back-end</b></td>
+    <td align="center"><b>DB Crawling</b></td>
+    <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>

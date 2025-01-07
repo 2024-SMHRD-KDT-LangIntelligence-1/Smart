@@ -125,8 +125,8 @@
     <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>
-    <td align="center"><b>1. WBS 관리<br>2. 메인,로그인,회원가입,마이페이지 기능 구현</b></td>
-    <td align="center"><b>1. 도서데이터 전처리,모델링,평가<br>2. 사용자 맞춤형 도서추천 기능 구현<br>3. 모델 구현</b></td>
+    <td align="center"><b>1. WBS 관리 2. 메인,로그인,회원가입,마이페이지 기능 구현</b></td>
+    <td align="center"><b>1. 도서데이터 전처리,모델링,평가 2. 사용자 맞춤형 도서추천 기능 구현 3. 모델 구현</b></td>
     <td align="center"><b>DB, Crawling</b></td>
     <td align="center"><b>Front-end</b></td>
   </tr>

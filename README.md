@@ -1,4 +1,4 @@
-# 📎 꽃 보러 갈래?(팀명: 아름답조)
+# 📎 AI기반 사용자 맞춤형 도서추천 플랫폼(팀명: 스마트)
 ![image](https://user-images.githubusercontent.com/25995055/178401309-2a2ffc86-ef45-439b-bfd8-6978312100bc.png)
 
 
@@ -8,7 +8,7 @@
 <br>
 
 ## 📅 프로젝트 기간
-2022.04.22 ~ 2022.06.03 (6주)
+2024.12.23 - 2025.01.08
 <br>
 
 ## ⭐ 주요 기능
@@ -32,6 +32,7 @@
             <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
             <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
             <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Jupyter-F7DF1E?style=for-the-badge&logo=Jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>

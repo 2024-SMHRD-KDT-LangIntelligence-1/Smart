@@ -125,6 +125,12 @@
     <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>
+    <td align="center"><b>1. WBS 관리<br>2. 메인/로그인/회원가입/마이페이지 기능 구현</b></td>
+    <td align="center"><b>Back-end</b></td>
+    <td align="center"><b>DB, Crawling</b></td>
+    <td align="center"><b>Front-end</b></td>
+  </tr>
+  <tr>
     <td align="center"><a href="https://github.com/minchichi" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/YoutubeOfficer" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/Kim-Seon-Bin" target='_blank'>github</a></td>

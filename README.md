@@ -33,7 +33,7 @@
         <td>
             <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
             <img src="https://img.shields.io/badge/Colab-ffbe76?style=for-the-badge&logo=Colab&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Jupyter-f6e58d?style=for-the-badge&logo=Jupyter&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -49,12 +49,13 @@
             <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
             <img src="https://img.shields.io/badge/SpringBoot-6ab04c?style=for-the-badge&logo=SpringBoot&logoColor=white"/>
             <img src="https://img.shields.io/badge/TomCat-f0932b?style=for-the-badge&logo=TomCat&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white"/> 
         </td>
     </tr>
     <tr>
         <td>데이터베이스</td>
         <td>
-            <img src="https://img.shields.io/badge/MySQL-7ed6df?style=for-the-badge&logo=MySQL&logoColor=white"/>
+            <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
         </td>
     </tr>
 </table>
@@ -181,12 +182,4 @@
 * 문제4<br>
     * 문제점 : 감정 모델선정 - FastText 한국어 모델을 사용하여 사전에 입력된 감정키워드와 책 소개의 의미적 유사도를 확인해 감정 추천은 가능하나 무거운 모델로 인해 학습이 오래 걸림
     * 해결방안 : 대규모 언어 모델인 OpenAI를 사용하여 자연어처리, 추천, 데이터 분석 등에 활용
-
-* 문제5<br>
-    * 문제점 : 
-    * 해결방안 : 
- 
-* 문제6<br>
-    * 문제점 : 
-    * 해결방안 : 
 
